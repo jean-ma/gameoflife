@@ -23,7 +23,7 @@ class GameOfLifeSpec extends FlatSpec {
   }
 
   "universe" should "keep alive a cell with 2 neighbors" in {
-    assert(GameOfLife.next(universe)(keepAliveCell) === D)
+    assert(GameOfLife.next(universe)(keepAliveCell) === A)
   }
 
   val universe: Universe =
