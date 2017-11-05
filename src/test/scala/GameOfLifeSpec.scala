@@ -26,6 +26,36 @@ class GameOfLifeSpec extends FlatSpec {
     assert(GameOfLife.next(universe)(keepAliveCell) === A)
   }
 
+  "universe" should "give expected universe"in {
+    val actual = GameOfLife.next(universe)
+
+    for {
+      i <- 0 to 4
+      j <- 0 to 3
+    } yield {
+      val cell = Cell(i, j)
+      assert(
+        expectedUniverse(cell) === actual(cell),
+        s"failed on $cell"
+      )
+    }
+  }
+
+  "universe" should "give expected universe of second generation"in {
+    val actual = GameOfLife.next(GameOfLife.next(universe))
+
+    for {
+      i <- 0 to 4
+      j <- 0 to 3
+    } yield {
+      val cell = Cell(i, j)
+      assert(
+        expectedUniverse2Gen(cell) === actual(cell),
+        s"failed on $cell"
+      )
+    }
+  }
+
   val universe: Universe =
     cell => {
       val space = Vector(
@@ -39,6 +69,36 @@ class GameOfLifeSpec extends FlatSpec {
         space(cell.x)(cell.y)
       } getOrElse D
     }
+
+  val expectedUniverse: Universe = {
+    cell => {
+      val space = Vector(
+        Vector(A, A, A, D, D),
+        Vector(D, D, A, D, D),
+        Vector(A, A, A, A, A),
+        Vector(D, D, D, D, D)
+      )
+
+      Try {
+        space(cell.x)(cell.y)
+      } getOrElse D
+    }
+  }
+
+  val expectedUniverse2Gen: Universe = {
+    cell => {
+      val space = Vector(
+        Vector(A, A, A, D, D),
+        Vector(D, D, D, D, D),
+        Vector(A, A, A, A, A),
+        Vector(D, A, A, A, A)
+      )
+
+      Try {
+        space(cell.x)(cell.y)
+      } getOrElse D
+    }
+  }
 
   val isolatedCell = Cell(1, 3)
 
