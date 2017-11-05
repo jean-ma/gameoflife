@@ -1,5 +1,7 @@
 
-import GameOfLife.{Universe, Alive => A, Dead => D}
+import gameoflife.GameOfLife.Universe
+import gameoflife.{GameOfLife, Alive => A, Dead => D, Cell}
+
 import org.scalatest.FlatSpec
 
 import scala.util.Try

@@ -1,3 +1,4 @@
+package gameoflife
 /**
  * The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in
  * one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight
@@ -13,12 +14,6 @@
 object GameOfLife {
 
   type Universe = Cell => Liveness
-
-  sealed trait Liveness
-
-  object Alive extends Liveness
-
-  object Dead extends Liveness
 
   def neighbors(universe: Universe, cell: Cell): Int = {
     List(
@@ -48,3 +43,7 @@ object GameOfLife {
 }
 
 case class Cell(x: Int, y: Int)
+
+sealed trait Liveness
+object Alive extends Liveness
+object Dead extends Liveness
