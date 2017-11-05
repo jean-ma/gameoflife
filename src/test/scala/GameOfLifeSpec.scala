@@ -1,6 +1,6 @@
 
 import gameoflife.GameOfLife.Universe
-import gameoflife.{GameOfLife, Alive => A, Dead => D, Cell}
+import gameoflife.{GameOfLife, Alive => ♡, Dead => ☠, Cell}
 
 import org.scalatest.FlatSpec
 
@@ -9,7 +9,7 @@ import scala.util.Try
 class GameOfLifeSpec extends FlatSpec {
 
   "An isolated cell" should "die" in {
-    assert(GameOfLife.next(universe)(isolatedCell) === D)
+    assert(GameOfLife.next(universe)(isolatedCell) === ☠)
   }
 
   "Neighbors" should "return the number of alive neighbors" in {
@@ -17,88 +17,70 @@ class GameOfLifeSpec extends FlatSpec {
   }
 
   "universe" should "give life to a dead cell with 3 Alive neighbors" in {
-    assert(GameOfLife.next(universe)(deadToAliveCell) === A)
+    assert(GameOfLife.next(universe)(deadToAliveCell) === ♡)
   }
 
   "universe" should "kill a living cell with 4 or more neighbors" in {
-    assert(GameOfLife.next(universe)(aliveToDeadCell) === D)
+    assert(GameOfLife.next(universe)(aliveToDeadCell) === ☠)
   }
 
   "universe" should "keep alive a cell with 2 neighbors" in {
-    assert(GameOfLife.next(universe)(keepAliveCell) === A)
+    assert(GameOfLife.next(universe)(keepAliveCell) === ♡)
   }
 
   "universe" should "give expected universe"in {
     val actual = GameOfLife.next(universe)
 
-    for {
-      i <- 0 to 4
-      j <- 0 to 3
-    } yield {
-      val cell = Cell(i, j)
-      assert(
-        expectedUniverse(cell) === actual(cell),
-        s"failed on $cell"
-      )
-    }
+    assertEqual(expectedUniverse, actual, 5)
   }
 
   "universe" should "give expected universe of second generation"in {
     val actual = GameOfLife.next(GameOfLife.next(universe))
 
-    for {
-      i <- 0 to 4
-      j <- 0 to 3
-    } yield {
-      val cell = Cell(i, j)
-      assert(
-        expectedUniverse2Gen(cell) === actual(cell),
-        s"failed on $cell"
-      )
-    }
+    assertEqual(expectedUniverse2Gen, actual, 5)
   }
 
   val universe: Universe =
     cell => {
       val space = Vector(
-        Vector(A, A, D, D, D),
-        Vector(A, A, D, A, D),
-        Vector(A, D, D, D, A),
-        Vector(D, D, D, A, D)
+        Vector(♡, ♡, ☠, ☠, ☠),
+        Vector(♡, ♡, ☠, ♡, ☠),
+        Vector(♡, ☠, ☠, ☠, ♡),
+        Vector(☠, ☠, ☠, ♡, ☠)
       )
 
       Try {
         space(cell.x)(cell.y)
-      } getOrElse D
+      } getOrElse ☠
     }
 
   val expectedUniverse: Universe = {
     cell => {
       val space = Vector(
-        Vector(A, A, A, D, D),
-        Vector(D, D, A, D, D),
-        Vector(A, A, A, A, A),
-        Vector(D, D, D, D, D)
+        Vector(♡, ♡, ♡, ☠, ☠),
+        Vector(☠, ☠, ♡, ☠, ☠),
+        Vector(♡, ♡, ♡, ♡, ♡),
+        Vector(☠, ☠, ☠, ☠, ☠)
       )
 
       Try {
         space(cell.x)(cell.y)
-      } getOrElse D
+      } getOrElse ☠
     }
   }
 
   val expectedUniverse2Gen: Universe = {
     cell => {
       val space = Vector(
-        Vector(A, A, A, D, D),
-        Vector(D, D, D, D, D),
-        Vector(A, A, A, A, A),
-        Vector(D, A, A, A, A)
+        Vector(♡, ♡, ♡, ☠, ☠),
+        Vector(☠, ☠, ☠, ☠, ☠),
+        Vector(♡, ♡, ♡, ♡, ☠),
+        Vector(☠, ♡, ♡, ♡, ☠)
       )
 
       Try {
         space(cell.x)(cell.y)
-      } getOrElse D
+      } getOrElse ☠
     }
   }
 
@@ -111,4 +93,17 @@ class GameOfLifeSpec extends FlatSpec {
   val aliveToDeadCell = Cell(1, 1)
 
   val keepAliveCell = Cell(2, 0)
+
+  private def assertEqual(expected: Universe, actual: Universe, size: Int) = {
+    for {
+      i <- 0 to size - 1
+      j <- 0 to size - 1
+    } yield {
+      val cell = Cell(i, j)
+      assert(
+        expected(cell) === actual(cell),
+        s"failed on $cell"
+      )
+    }
+  }
 }
