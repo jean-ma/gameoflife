@@ -31,6 +31,7 @@ object GameOfLife {
   def next(u: Universe): Universe =
     (cell: Cell) => cell match {
       case Cell(1, 2) => Dead
+      case c: Cell if neighbors(u, c) == 3 => Alive
       case _ => u(cell)
   }
 
