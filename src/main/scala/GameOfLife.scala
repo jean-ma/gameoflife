@@ -4,38 +4,46 @@
  * neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the
  * following transitions occur:
  *
- *  Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
- *  Any live cell with two or three live neighbours lives on to the next generation.
- *  Any live cell with more than three live neighbours dies, as if by overpopulation.
- *  Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+ *  - Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+ *  - Any live cell with two or three live neighbours lives on to the next generation.
+ *  - Any live cell with more than three live neighbours dies, as if by overpopulation.
+ *  - Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
  */
 
 object GameOfLife {
-  def neighbors(universe: Universe, cell: Cell): Int = List(
-    universe(Cell(cell.x - 1, cell.y - 1)),
-    universe(Cell(cell.x - 1, cell.y)),
-    universe(Cell(cell.x - 1, cell.y + 1)),
-    universe(Cell(cell.x, cell.y - 1)),
-    universe(Cell(cell.x, cell.y + 1)),
-    universe(Cell(cell.x + 1, cell.y - 1)),
-    universe(Cell(cell.x + 1, cell.y)),
-    universe(Cell(cell.x + 1, cell.y + 1))
-  ).count(_ == Alive)
 
   type Universe = Cell => Liveness
 
   sealed trait Liveness
+
   object Alive extends Liveness
+
   object Dead extends Liveness
 
-  def next(u: Universe): Universe =
-    (cell: Cell) => cell match {
-      case c: Cell if neighbors(u, c) < 2 => Dead
-      case c: Cell if neighbors(u, c) == 2 => u(cell)
-      case c: Cell if neighbors(u, c) == 3 => Alive
-      case c: Cell if neighbors(u, c) > 3 => Dead
-      case _ => Dead
+  def neighbors(universe: Universe, cell: Cell): Int = {
+    List(
+      (cell.x - 1, cell.y - 1),
+      (cell.x - 1, cell.y),
+      (cell.x - 1, cell.y + 1),
+      (cell.x, cell.y - 1),
+      (cell.x, cell.y + 1),
+      (cell.x + 1, cell.y - 1),
+      (cell.x + 1, cell.y),
+      (cell.x + 1, cell.y + 1)
+    ).count {
+      case (x, y) =>
+        universe(Cell(x, y)) == Alive
+    }
   }
+
+  def next(u: Universe): Universe =
+    (cell: Cell) => neighbors(u, cell) match {
+      case n if n < 2 => Dead
+      case n if n == 2 => u(cell)
+      case n if n == 3 => Alive
+      case n if n > 3 => Dead
+      case _ => Dead
+    }
 
 }
 
