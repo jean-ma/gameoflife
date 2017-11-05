@@ -18,13 +18,21 @@ class GameOfLifeSpec extends FlatSpec {
     assert(GameOfLife.next(universe)(deadToAliveCell) === A)
   }
 
+  "universe" should "kill a living cell with 4 or more neighbors" in {
+    assert(GameOfLife.next(universe)(aliveToDeadCell) === D)
+  }
+
+  "universe" should "keep alive a cell with 2 neighbors" in {
+    assert(GameOfLife.next(universe)(keepAliveCell) === D)
+  }
+
   val universe: Universe =
     cell => {
       val space = Vector(
-        Vector(D, D, D, D),
-        Vector(D, D, A, D),
-        Vector(D, D, D, A),
-        Vector(D, D, A, D)
+        Vector(A, A, D, D, D),
+        Vector(A, A, D, A, D),
+        Vector(A, D, D, D, A),
+        Vector(D, D, D, A, D)
       )
 
       Try {
@@ -32,9 +40,13 @@ class GameOfLifeSpec extends FlatSpec {
       } getOrElse D
     }
 
-  val isolatedCell = Cell(1, 2)
+  val isolatedCell = Cell(1, 3)
 
-  val borderCell = Cell(2, 3)
+  val borderCell = Cell(2, 4)
 
-  val deadToAliveCell = Cell(2, 2)
+  val deadToAliveCell = Cell(2, 3)
+
+  val aliveToDeadCell = Cell(1, 1)
+
+  val keepAliveCell = Cell(2, 0)
 }
