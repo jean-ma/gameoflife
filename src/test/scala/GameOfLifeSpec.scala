@@ -4,10 +4,13 @@ import GameOfLife.{Universe, Alive => A, Dead => D}
 import org.scalatest.FlatSpec
 
 class GameOfLifeSpec extends FlatSpec {
-  "An isolated cell" should "die" in {
-    val isolatedCell = Cell(1, 2)
 
+  "An isolated cell" should "die" in {
     assert(GameOfLife.next(universe)(isolatedCell) === D)
+  }
+
+  "Neighbors" should "return the number of alive neighbors" in {
+    assert(GameOfLife.neighbors(universe, isolatedCell) === 1)
   }
 
   val universe: Universe =
@@ -21,4 +24,7 @@ class GameOfLifeSpec extends FlatSpec {
       space(cell.x)(cell.y)
     }
 
+  val isolatedCell = Cell(1, 2)
+
+  val borderCell = Cell(2, 2)
 }

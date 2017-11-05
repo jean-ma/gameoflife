@@ -11,6 +11,17 @@
  */
 
 object GameOfLife {
+  def neighbors(universe: Universe, cell: Cell): Int = List(
+    universe(Cell(cell.x - 1, cell.y - 1)),
+    universe(Cell(cell.x - 1, cell.y)),
+    universe(Cell(cell.x - 1, cell.y + 1)),
+    universe(Cell(cell.x, cell.y - 1)),
+    universe(Cell(cell.x, cell.y + 1)),
+    universe(Cell(cell.x + 1, cell.y - 1)),
+    universe(Cell(cell.x + 1, cell.y)),
+    universe(Cell(cell.x + 1, cell.y + 1))
+  ).count(_ == Alive)
+
   type Universe = Cell => Liveness
 
   sealed trait Liveness
