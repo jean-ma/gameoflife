@@ -1,7 +1,7 @@
+package gameoflife
 
 import gameoflife.GameOfLife.Universe
-import gameoflife.{GameOfLife, Alive => ♡, Dead => ☠, Cell}
-
+import gameoflife.{Alive => ♡, Dead => ☠}
 import org.scalatest.FlatSpec
 
 import scala.util.Try
