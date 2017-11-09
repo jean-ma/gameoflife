@@ -15,24 +15,20 @@ object GameOfLife {
 
   type Universe = Cell => Liveness
 
-  def neighbors(universe: Universe, cell: Cell): Int = {
-    List(
-      (cell.x - 1, cell.y - 1),
-      (cell.x - 1, cell.y),
-      (cell.x - 1, cell.y + 1),
-      (cell.x, cell.y - 1),
-      (cell.x, cell.y + 1),
-      (cell.x + 1, cell.y - 1),
-      (cell.x + 1, cell.y),
-      (cell.x + 1, cell.y + 1)
-    ).count {
-      case (x, y) =>
-        universe(Cell(x, y)) == Alive
+  def countNeighbors(universe: Universe, cell: Cell): Int = {
+      for {
+        i <- -1 to 1
+        j <- -1 to 1
+        if i != 0 || j != 0
+      } yield {
+        Cell(cell.x + i, cell.y + j)
+      }
+    } count {
+      cell => universe(cell) == Alive
     }
-  }
 
   def next(u: Universe): Universe =
-    (cell: Cell) => neighbors(u, cell) match {
+    (cell: Cell) => countNeighbors(u, cell) match {
       case n if n < 2 => Dead
       case n if n == 2 => u(cell)
       case n if n == 3 => Alive
