@@ -29,10 +29,8 @@ object GameOfLife {
 
   def next(u: Universe): Universe =
     (cell: Cell) => countNeighbors(u, cell) match {
-      case n if n < 2 => Dead
       case n if n == 2 => u(cell)
       case n if n == 3 => Alive
-      case n if n > 3 => Dead
       case _ => Dead
     }
 
