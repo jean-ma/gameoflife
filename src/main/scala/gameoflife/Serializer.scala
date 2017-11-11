@@ -58,13 +58,16 @@ object Serializer {
   def toHtml(universe: Universe, rows: Int, columns: Int): Unit = {
     val canvas = init()
 
-    var u = toString(universe, rows, columns)
+    var varU = toString(universe, rows, columns)
 
     dom.window.setInterval(
       () => {
-        val universe = fromString(u)
-        loop(canvas, universe, rows, columns)
-        u = toString(next(universe), rows, columns)
+        if(!varU.contains('o')) {
+          varU = toString(universe, rows, columns)
+        }
+        val u = fromString(varU)
+        loop(canvas, u, rows, columns)
+        varU = toString(next(universe), rows, columns)
       },
       1000
     )
