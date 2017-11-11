@@ -9,8 +9,7 @@ import org.scalajs.dom.html.Canvas
 import scala.util.Try
 
 object Serializer {
-  val initUniverse: Vector[Vector[Liveness]] = {
-    """
+  val initUniverse = """
       |o     oo    oo     oo,
       |      o   ooo    ooo ,
       |  oo                 ,
@@ -21,23 +20,18 @@ object Serializer {
       |                     ,
       |                     ,
       |o  oo               o,
-    """.stripMargin.split(",\n").map(_.toList.map {
-      case 'o' => Alive
-      case _ => Dead
-    }.toVector).toVector
+    """.stripMargin
+
+  def getSize(universe: String) = {
+    val u = universe.split(",\n").map(_.toList)
+    (u.length, u.headOption.getOrElse(List.empty).length)
   }
 
   def main(args: Array[String]): Unit = {
-    val universe: Universe = (cell: Cell) => {
-      Try(initUniverse(cell.x)(cell.y)).getOrElse(Dead)
-    }
+    val (rows, columns) = getSize(initUniverse)
+    val universe = fromString(initUniverse)
 
-    val height = initUniverse.length
-    val width = initUniverse.headOption.getOrElse(Vector.empty).length
-
-    println(toString(universe, height, width))
-
-    toHtml(universe, height, width)
+    toHtml(universe, rows, columns)
   }
 
   def toString(universe: Universe, rows: Int, columns: Int): String = {
@@ -48,29 +42,32 @@ object Serializer {
           case Dead => " "
         }
       }.mkString
-    }.mkString("\n")
+    }.mkString(",\n")
+  }
+
+  def fromString(universe: String): Universe = {
+    (cell: Cell) =>
+      Try {
+        universe.split(",\n").map(_.toList.map {
+          case 'o' => Alive
+          case _ => Dead
+        }.toVector).toVector(cell.x)(cell.y)
+      }.getOrElse(Dead)
   }
 
   def toHtml(universe: Universe, rows: Int, columns: Int): Unit = {
     val canvas = init()
 
-    dom.window.setTimeout(
+    var u = toString(universe, rows, columns)
+
+    dom.window.setInterval(
       () => {
+        val universe = fromString(u)
         loop(canvas, universe, rows, columns)
+        u = toString(next(universe), rows, columns)
       },
-      1000)
-
-    dom.window.setTimeout(
-      () => {
-        loop(canvas, next(universe), rows, columns)
-      },
-      2000)
-
-    dom.window.setTimeout(
-      () => {
-        loop(canvas, next(next(universe)), rows, columns)
-      },
-      3000)
+      1000
+    )
   }
 
   private def init(): Canvas = {
