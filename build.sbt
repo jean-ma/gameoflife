@@ -1,4 +1,4 @@
-name := "craftmanship"
+name := "ConwaysGameOfLife"
 
 version := "1.0"
 

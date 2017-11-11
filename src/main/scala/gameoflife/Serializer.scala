@@ -26,16 +26,18 @@ object Serializer {
       |                                    ,
     """.stripMargin
 
+  val (rows, columns) = getSize(initUniverse)
+
   def getSize(universe: String) = {
     val u = universe.split(",\n").map(_.toList)
     (u.length, u.headOption.getOrElse(List.empty).length)
   }
 
   def main(args: Array[String]): Unit = {
-    val (rows, columns) = getSize(initUniverse)
+
     val universe = fromString(initUniverse)
 
-    toHtml(universe, rows, columns)
+    toHtml(universe)
   }
 
   def toString(universe: Universe, rows: Int, columns: Int): String = {
@@ -59,23 +61,27 @@ object Serializer {
       }.getOrElse(Dead)
   }
 
-  def toHtml(universe: Universe, rows: Int, columns: Int): Unit = {
+  def toHtml(universe: Universe): Unit = {
     val canvas = init()
 
     var varU = toString(universe, rows, columns)
 
     dom.window.setInterval(
       () => {
-        if(!varU.contains('o')) {
-          varU = toString(universe, rows, columns)
-        }
         val u = fromString(varU)
         loop(canvas, u, rows, columns)
+        val previous = varU
         varU = toString(next(u), rows, columns)
+
+        if(stationary(previous, varU)) {
+          varU = toString(universe, rows, columns)
+        }
       },
       1000
     )
   }
+
+  private def stationary(universe1: String, universe2: String): Boolean = universe1 == universe2
 
   private def init(): Canvas = {
     val canvas = document.createElement("canvas").asInstanceOf[Canvas]
