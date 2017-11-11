@@ -10,16 +10,20 @@ import scala.util.Try
 
 object Serializer {
   val initUniverse = """
-      |o     oo    oo     oo,
-      |      o   ooo    ooo ,
-      |  oo                 ,
-      |  ooo                ,
-      |                     ,
-      |                     ,
-      |                     ,
-      |                     ,
-      |                     ,
-      |o  oo               o,
+      |o     oo    oo     oo               ,
+      |      o   ooo    ooo                ,
+      |  oo                                ,
+      |  ooo                               ,
+      |                                    ,
+      |                                    ,
+      |                                    ,
+      |                       oo ooo       ,
+      |                       oooo         ,
+      |o  oo               o               ,
+      |oo ooo                              ,
+      |  oooo                              ,
+      |                                    ,
+      |                                    ,
     """.stripMargin
 
   def getSize(universe: String) = {
@@ -67,7 +71,7 @@ object Serializer {
         }
         val u = fromString(varU)
         loop(canvas, u, rows, columns)
-        varU = toString(next(universe), rows, columns)
+        varU = toString(next(u), rows, columns)
       },
       1000
     )
