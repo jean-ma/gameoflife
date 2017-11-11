@@ -1,3 +1,5 @@
+import sbt.taskKey
+
 name := "ConwaysGameOfLife"
 
 version := "1.0"
@@ -14,3 +16,16 @@ enablePlugins(ScalaJSPlugin)
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.4"
 libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.1"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
+
+def copy(finder: PathFinder, dst: File) = {
+  IO.copy(finder.get map {f => (f, dst / f.getName)})
+}
+
+val copyJsToDocs = taskKey[Unit]("copy js files")
+
+lazy val copyJs = (project in file(".")).settings(
+  (fastOptJS in Compile) := {
+    copy((fastOptJS in Compile).value.data, new File("./docs"))
+    (fastOptJS in Compile).value
+  }
+)
