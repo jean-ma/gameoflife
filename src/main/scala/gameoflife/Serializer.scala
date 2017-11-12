@@ -1,5 +1,7 @@
 package gameoflife
 
+import java.io.File
+
 import gameoflife.GameOfLife.Universe
 import gameoflife.GameOfLife.next
 import org.scalajs.dom
