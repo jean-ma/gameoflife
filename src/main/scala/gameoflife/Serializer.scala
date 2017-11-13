@@ -1,89 +1,51 @@
 package gameoflife
 
-import java.io.File
-
 import gameoflife.GameOfLife.Universe
-import gameoflife.GameOfLife.next
 import org.scalajs.dom
 import dom.document
 import org.scalajs.dom.html.Canvas
 
-import scala.util.Try
+import scala.util.Random
 
 object Serializer {
-  val initUniverse = """
-      |o     oo    oo     oo               ,
-      |      o   ooo    ooo                ,
-      |  oo                                ,
-      |  ooo                               ,
-      |                                    ,
-      |                                    ,
-      |                                    ,
-      |                       oo ooo       ,
-      |                       oooo         ,
-      |o  oo               o               ,
-      |oo ooo                              ,
-      |  oooo                              ,
-      |                                    ,
-      |                                    ,
-    """.stripMargin
-
-  val (rows, columns) = getSize(initUniverse)
-
-  def getSize(universe: String) = {
-    val u = universe.split(",\n").map(_.toList)
-    (u.length, u.headOption.getOrElse(List.empty).length)
-  }
 
   def main(args: Array[String]): Unit = {
-
-    val universe = fromString(initUniverse)
-
-    toHtml(universe)
-  }
-
-  def toString(universe: Universe, rows: Int, columns: Int): String = {
-    (0 until rows).map { r =>
-      (0 until columns).map { c =>
-        universe(Cell(r, c)) match {
-          case Alive => "o"
-          case Dead => " "
-        }
-      }.mkString
-    }.mkString(",\n")
-  }
-
-  def fromString(universe: String): Universe = {
-    (cell: Cell) =>
-      Try {
-        universe.split(",\n").map(_.toList.map {
-          case 'o' => Alive
-          case _ => Dead
-        }.toVector).toVector(cell.x)(cell.y)
-      }.getOrElse(Dead)
-  }
-
-  def toHtml(universe: Universe): Unit = {
     val canvas = init()
 
-    var varU = toString(universe, rows, columns)
+    var varU = randomUniverse
 
     dom.window.setInterval(
       () => {
-        val u = fromString(varU)
-        loop(canvas, u, rows, columns)
-        val previous = varU
-        varU = toString(next(u), rows, columns)
+        val u = UniverseImpl.next(varU, 100, 100)
+        loop(canvas, varU, 100, 100)
 
-        if(stationary(previous, varU)) {
-          varU = toString(universe, rows, columns)
+        if(stationary(u, varU, 20, 20)) {
+          varU = randomUniverse
+        } else {
+          varU = u
         }
       },
       1000
     )
   }
 
-  private def stationary(universe1: String, universe2: String): Boolean = universe1 == universe2
+  private def stationary(universe1: Universe, universe2: Universe, rows: Int, columns: Int): Boolean = {
+    for {
+      r <- 0 until rows
+      c <- 0 until columns
+    } yield {
+      Cell(r, c)
+    }
+  } forall { cell: Cell => universe1(cell) == universe2(cell) }
+
+  private def randomUniverse: Universe = {
+    val allUniverses = InitUniverse.all
+
+    val random = new Random().nextInt(allUniverses.length)
+
+    UniverseImpl.from(
+      InitUniverse.all(random))
+  }
 
   private def init(): Canvas = {
     val canvas = document.createElement("canvas").asInstanceOf[Canvas]
