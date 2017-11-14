@@ -2001,79 +2001,20 @@ function $m_Lgameoflife_GameOfLife$() {
   return $n_Lgameoflife_GameOfLife$
 }
 /** @constructor */
-function $c_Lgameoflife_InitUniverse$() {
-  $c_O.call(this);
-  this.glider$1 = null;
-  this.cells$1 = null;
-  this.compactCodership$1 = null;
-  this.parasites$1 = null;
-  this.all$1 = null
-}
-$c_Lgameoflife_InitUniverse$.prototype = new $h_O();
-$c_Lgameoflife_InitUniverse$.prototype.constructor = $c_Lgameoflife_InitUniverse$;
-/** @constructor */
-function $h_Lgameoflife_InitUniverse$() {
-  /*<skip>*/
-}
-$h_Lgameoflife_InitUniverse$.prototype = $c_Lgameoflife_InitUniverse$.prototype;
-$c_Lgameoflife_InitUniverse$.prototype.init___ = (function() {
-  $n_Lgameoflife_InitUniverse$ = this;
-  var this$2 = new $c_sci_StringOps().init___T("\n      |21b2o2b2o80b2o2b2o$21b2o2b2o80b2o2b2o$20b3o2b3o78b3o2b3o$20b3o2b3o78b\n      |3o2b3o2$20bo6bo78bo6bo$20bo2b2o2bo78bo2b2o2bo$21b6o80b6o$4b2o2b2o114b\n      |2o2b2o$4b2o2b2o114b2o2b2o$3b3o2b3o12b2o84b2o12b3o2b3o$3b3o2b3o11bo2bo\n      |82bo2bo11b3o2b3o$22b4o82b4o$3bo6bo10b2o2b2o80b2o2b2o10bo6bo$3bo2b2o2bo\n      |7bo2bo4bo2bo74bo2bo4bo2bo7bo2b2o2bo$4b6o11bo4bo80bo4bo11b6o$22b4o82b4o\n      |$18bo10bo74bo10bo$6b2o11bo8bo76bo8bo11b2o$5bo2bo116bo2bo$5b4o14b2o84b\n      |2o14b4o$4b2o2b2o114b2o2b2o$bo2bo4bo2bo108bo2bo4bo2bo$4bo4bo114bo4bo$5b\n      |4o21bo94b4o$bo10bo16b2o90bo10bo$2bo8bo17bobo90bo8bo2$6b2o118b2o21$3b2o\n      |2b2o116b2o2b2o$3b2o2b2o116b2o2b2o$2b3o2b3o114b3o2b3o$2b3o2b3o114b3o2b\n      |3o2$2bo6bo114bo6bo$2bo2b2o2bo114bo2b2o2bo$3b6o116b6o3$5b2o120b2o$4bo2b\n      |o118bo2bo$4b4o118b4o$3b2o2b2o116b2o2b2o$o2bo4bo2bo110bo2bo4bo2bo$3bo4b\n      |o116bo4bo$4b4o118b4o$o10bo110bo10bo$bo8bo112bo8bo2$5b2o120b2o3$6b2o2b\n      |2o110b2o2b2o$6b2o2b2o110b2o2b2o$5b3o2b3o108b3o2b3o$5b3o2b3o108b3o2b3o\n      |2$5bo6bo22b2o2b2o52b2o2b2o22bo6bo$5bo2b2o2bo22b2o2b2o52b2o2b2o22bo2b2o\n      |2bo$6b6o22b3o2b3o50b3o2b3o22b6o$34b3o2b3o50b3o2b3o2$8b2o24bo6bo50bo6bo\n      |24b2o$7bo2bo23bo2b2o2bo50bo2b2o2bo23bo2bo$7b4o24b6o52b6o24b4o$6b2o2b2o\n      |110b2o2b2o$3bo2bo4bo2bo104bo2bo4bo2bo$6bo4bo25b2o56b2o25bo4bo$7b4o25bo\n      |2bo54bo2bo25b4o$3bo10bo21b4o54b4o21bo10bo$4bo8bo21b2o2b2o52b2o2b2o21bo\n      |8bo$32bo2bo4bo2bo46bo2bo4bo2bo$8b2o25bo4bo52bo4bo25b2o$14b2o2b2o16b4o\n      |54b4o16b2o2b2o$14b2o2b2o12bo10bo46bo10bo12b2o2b2o$13b3o2b3o12bo8bo48bo\n      |8bo12b3o2b3o$13b3o2b3o92b3o2b3o$37b2o56b2o$13bo6bo92bo6bo$13bo2b2o2bo\n      |92bo2b2o2bo$14b6o94b6o3$16b2o98b2o$15bo2bo96bo2bo$15b4o96b4o$14b2o2b2o\n      |94b2o2b2o$11bo2bo4bo2bo88bo2bo4bo2bo$14bo4bo94bo4bo$15b4o96b4o$11bo10b\n      |o88bo10bo$12bo8bo90bo8bo2$16b2o98b2o!\n    ");
-  this.glider$1 = $f_sci_StringLike__stripMargin__C__T(this$2, 124);
-  var this$4 = new $c_sci_StringOps().init___T("\n      |136b2o$136b2o5b2o$143b2o3$112b2o27b2o$112b2o5bob2o18b2o$119b2obo24b2o$\n      |147b2o$106b2o22b3o$106b2o20bo4bo$110b2o18bob2o$110b2o15b3o$126bo$146b\n      |2o$146bo$105b2o40bo$105b2o39b2o7$15b2o76b2o$15b2o76b2obo$97bo$94bo$95b\n      |ob2o$97b2o2$152b2o$7b2o143b2o$7b2o3$147b2o$147b2o$151b2o$18b3o130b2o$\n      |17bo2bo89b2o$17bo3bo88b2o24bob2o$16b2o2bo84bo10b2o18b2obo5b2o$3bo14bo\n      |85bobo9b2o27b2o$3bobo13b2o82bo3bo$3bo2bo12b3o80bo3bo$5bo13b3o79bo3bo8b\n      |2o$3b2o95bo3bo9b2o5b2o$5bo95bobo17b2o$5b3o94bo$6bo11b3o6bo$3bobo19b2o$\n      |bo2bo23b2o$o25bobo$bobo23b2o$28bo$28bobo$27bo2bo$27b2o$27bo$23b3o9$42b\n      |2o$47bo$41bob5o$40b3o2bo3bo$46bobo$39bo8bo$39bo$39bo2$53b2o3bo$49bo3b\n      |3obob2o$49bo3b3o4bo$49bo6bo3bo$57b3o$57bo16b2o$74b2o7$66b2o$50bo15b2o$\n      |49b2o3bo$48bob2obobo$47bo4bo$45bo2bo3bob3o2$45bobo$46bo!\n    ");
-  this.cells$1 = $f_sci_StringLike__stripMargin__C__T(this$4, 124);
-  var this$6 = new $c_sci_StringOps().init___T("\n      |56bo$55b3o$54b3obo14bo$53boo3boo6bobbo3bo$52boobobboo6bo3bobbo$53boobo\n      |boo5bo$54b3oboo6boboo$56bo4bo$57b4o20boo$59bo12boboo5boo$72b3o$73bo$$\n      |80b3o$85b3o$79bobbo3boo$80b5obobboo$80boobo3boobo$81boo4b3o$81bobobob\n      |oo$61boo13boo$61boo4bo7bo$66b3o6b3o$48b3o15bobbo5boo$47bo19boo6bo$46bo\n      |4boo13bo$45bo3bo18bo$45bobbo4bo12bo$45bo3bo3bo12b3o$46boobob3o$26bo22b\n      |o$25b3o22b4o$24b3obo14bo8boo$23boo3boo6bobbo3bo$22boobobboo6bo3bobbo$\n      |23booboboo5bo$24b3oboo6boboo$26bo4bo$27b4o$29bo12boboo$42b3o$43bo9$31b\n      |oo$31boo$39boo$obbo35boo$4bo$o3bo$b4o!\n    ");
-  this.compactCodership$1 = $f_sci_StringLike__stripMargin__C__T(this$6, 124);
-  var this$8 = new $c_sci_StringOps().init___T("\n      |6bo13bo$5b3o11b3o$3b2ob3o9b3ob2o$4bo2bob2o5b2obo2bo$b2obo4bobo3bobo4bo\n      |b2o$b2obobo2bob2ob2obo2bobob2o$bo8bobobobo8bo$2o7b2obobob2o7b2o$12bobo\n      |$7b3obo3bob3o$6b2o11b2o$6bo5bo4b2o2bo$5b2o4b3o3b2o2bo$11bob2o3b3o$12b\n      |3o4bo$12b3o$12b3o$12b2o2$19bobo$20b2o$15b2o3bo$16b2o$15bo!\n    ");
-  this.parasites$1 = $f_sci_StringLike__stripMargin__C__T(this$8, 124);
-  var this$9 = $m_s_package$().Vector$1;
-  var array = [this.glider$1, this.cells$1, this.compactCodership$1, this.parasites$1];
-  if (($uI(array.length) === 0)) {
-    var jsx$1 = this$9.NIL$6
-  } else {
-    var b = new $c_sci_VectorBuilder().init___();
-    var i = 0;
-    var len = $uI(array.length);
-    while ((i < len)) {
-      var index = i;
-      var arg1 = array[index];
-      b.$$plus$eq__O__sci_VectorBuilder(arg1);
-      i = ((1 + i) | 0)
-    };
-    var jsx$1 = b.result__sci_Vector()
-  };
-  this.all$1 = jsx$1;
-  return this
-});
-var $d_Lgameoflife_InitUniverse$ = new $TypeData().initClass({
-  Lgameoflife_InitUniverse$: 0
-}, false, "gameoflife.InitUniverse$", {
-  Lgameoflife_InitUniverse$: 1,
-  O: 1
-});
-$c_Lgameoflife_InitUniverse$.prototype.$classData = $d_Lgameoflife_InitUniverse$;
-var $n_Lgameoflife_InitUniverse$ = (void 0);
-function $m_Lgameoflife_InitUniverse$() {
-  if ((!$n_Lgameoflife_InitUniverse$)) {
-    $n_Lgameoflife_InitUniverse$ = new $c_Lgameoflife_InitUniverse$().init___()
-  };
-  return $n_Lgameoflife_InitUniverse$
-}
-/** @constructor */
-function $c_Lgameoflife_Serializer$() {
+function $c_Lgameoflife_HtmlAnimation$() {
   $c_O.call(this)
 }
-$c_Lgameoflife_Serializer$.prototype = new $h_O();
-$c_Lgameoflife_Serializer$.prototype.constructor = $c_Lgameoflife_Serializer$;
+$c_Lgameoflife_HtmlAnimation$.prototype = new $h_O();
+$c_Lgameoflife_HtmlAnimation$.prototype.constructor = $c_Lgameoflife_HtmlAnimation$;
 /** @constructor */
-function $h_Lgameoflife_Serializer$() {
+function $h_Lgameoflife_HtmlAnimation$() {
   /*<skip>*/
 }
-$h_Lgameoflife_Serializer$.prototype = $c_Lgameoflife_Serializer$.prototype;
-$c_Lgameoflife_Serializer$.prototype.init___ = (function() {
+$h_Lgameoflife_HtmlAnimation$.prototype = $c_Lgameoflife_HtmlAnimation$.prototype;
+$c_Lgameoflife_HtmlAnimation$.prototype.init___ = (function() {
   return this
 });
-$c_Lgameoflife_Serializer$.prototype.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement = (function() {
+$c_Lgameoflife_HtmlAnimation$.prototype.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement = (function() {
   var canvas = $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().createElement("canvas");
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().body.style.backgroundColor = "black";
   canvas.setAttribute("id", "ui");
@@ -2086,7 +2027,7 @@ $c_Lgameoflife_Serializer$.prototype.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasEl
   this$3.java$lang$JSConsoleBasedPrintStream$$printString__T__V((x + "\n"));
   return canvas
 });
-$c_Lgameoflife_Serializer$.prototype.stationary__p1__F1__F1__I__I__Z = (function(universe1, universe2, rows, columns) {
+$c_Lgameoflife_HtmlAnimation$.prototype.stationary__p1__F1__F1__I__I__Z = (function(universe1, universe2, rows, columns) {
   var isEmpty$4 = (rows <= 0);
   var scala$collection$immutable$Range$$lastElement$4 = (((-1) + rows) | 0);
   $m_sci_IndexedSeq$();
@@ -2149,18 +2090,8 @@ $c_Lgameoflife_Serializer$.prototype.stationary__p1__F1__F1__I__I__Z = (function
   };
   return res
 });
-$c_Lgameoflife_Serializer$.prototype.main__AT__V = (function(args) {
-  var canvas = this.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement();
-  var elem = this.randomUniverse__p1__F1();
-  var varU = new $c_sr_ObjectRef().init___O(elem);
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().setInterval((function(canvas$1, varU$1) {
-    return (function() {
-      return $m_Lgameoflife_Serializer$().gameoflife$Serializer$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O(canvas$1, varU$1)
-    })
-  })(canvas, varU), 1000.0)
-});
-$c_Lgameoflife_Serializer$.prototype.gameoflife$Serializer$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O = (function(canvas$1, varU$1) {
-  var u = $m_Lgameoflife_UniverseImpl$().next__F1__I__I__F1($as_F1(varU$1.elem$1), 100, 100);
+$c_Lgameoflife_HtmlAnimation$.prototype.gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O = (function(canvas$1, varU$1) {
+  var u = $m_Lgameoflife_VectorUniverse$().next__F1__I__I__F1($as_F1(varU$1.elem$1), 100, 100);
   this.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__F1__I__I__V(canvas$1, $as_F1(varU$1.elem$1), 100, 100);
   if (this.stationary__p1__F1__F1__I__I__Z(u, $as_F1(varU$1.elem$1), 20, 20)) {
     varU$1.elem$1 = this.randomUniverse__p1__F1();
@@ -2170,7 +2101,17 @@ $c_Lgameoflife_Serializer$.prototype.gameoflife$Serializer$$$anonfun$main$1__Lor
     return (void 0)
   }
 });
-$c_Lgameoflife_Serializer$.prototype.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__F1__I__I__V = (function(canvas, universe, rows, columns) {
+$c_Lgameoflife_HtmlAnimation$.prototype.main__AT__V = (function(args) {
+  var canvas = this.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement();
+  var elem = this.randomUniverse__p1__F1();
+  var varU = new $c_sr_ObjectRef().init___O(elem);
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().setInterval((function(canvas$1, varU$1) {
+    return (function() {
+      return $m_Lgameoflife_HtmlAnimation$().gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O(canvas$1, varU$1)
+    })
+  })(canvas, varU), 1000.0)
+});
+$c_Lgameoflife_HtmlAnimation$.prototype.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__F1__I__I__V = (function(canvas, universe, rows, columns) {
   var ctx = canvas.getContext("2d");
   ctx.fillStyle = "black";
   ctx.fillRect(0.0, 0.0, $uI(canvas.width), $uI(canvas.height));
@@ -2210,26 +2151,85 @@ $c_Lgameoflife_Serializer$.prototype.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasEl
     }
   }
 });
-$c_Lgameoflife_Serializer$.prototype.randomUniverse__p1__F1 = (function() {
-  var allUniverses = $m_Lgameoflife_InitUniverse$().all$1;
+$c_Lgameoflife_HtmlAnimation$.prototype.randomUniverse__p1__F1 = (function() {
+  var allUniverses = $m_Lgameoflife_SampleUniverses$().all$1;
   var this$1 = new $c_s_util_Random().init___();
   var n = allUniverses.length__I();
   var random = this$1.self$1.nextInt__I__I(n);
-  return $m_Lgameoflife_UniverseImpl$().from__T__F1($as_T($m_Lgameoflife_InitUniverse$().all$1.apply__I__O(random)))
+  return $m_Lgameoflife_VectorUniverse$().from__T__F1($as_T($m_Lgameoflife_SampleUniverses$().all$1.apply__I__O(random)))
 });
-var $d_Lgameoflife_Serializer$ = new $TypeData().initClass({
-  Lgameoflife_Serializer$: 0
-}, false, "gameoflife.Serializer$", {
-  Lgameoflife_Serializer$: 1,
+var $d_Lgameoflife_HtmlAnimation$ = new $TypeData().initClass({
+  Lgameoflife_HtmlAnimation$: 0
+}, false, "gameoflife.HtmlAnimation$", {
+  Lgameoflife_HtmlAnimation$: 1,
   O: 1
 });
-$c_Lgameoflife_Serializer$.prototype.$classData = $d_Lgameoflife_Serializer$;
-var $n_Lgameoflife_Serializer$ = (void 0);
-function $m_Lgameoflife_Serializer$() {
-  if ((!$n_Lgameoflife_Serializer$)) {
-    $n_Lgameoflife_Serializer$ = new $c_Lgameoflife_Serializer$().init___()
+$c_Lgameoflife_HtmlAnimation$.prototype.$classData = $d_Lgameoflife_HtmlAnimation$;
+var $n_Lgameoflife_HtmlAnimation$ = (void 0);
+function $m_Lgameoflife_HtmlAnimation$() {
+  if ((!$n_Lgameoflife_HtmlAnimation$)) {
+    $n_Lgameoflife_HtmlAnimation$ = new $c_Lgameoflife_HtmlAnimation$().init___()
   };
-  return $n_Lgameoflife_Serializer$
+  return $n_Lgameoflife_HtmlAnimation$
+}
+/** @constructor */
+function $c_Lgameoflife_SampleUniverses$() {
+  $c_O.call(this);
+  this.glider$1 = null;
+  this.cells$1 = null;
+  this.compactCodership$1 = null;
+  this.parasites$1 = null;
+  this.all$1 = null
+}
+$c_Lgameoflife_SampleUniverses$.prototype = new $h_O();
+$c_Lgameoflife_SampleUniverses$.prototype.constructor = $c_Lgameoflife_SampleUniverses$;
+/** @constructor */
+function $h_Lgameoflife_SampleUniverses$() {
+  /*<skip>*/
+}
+$h_Lgameoflife_SampleUniverses$.prototype = $c_Lgameoflife_SampleUniverses$.prototype;
+$c_Lgameoflife_SampleUniverses$.prototype.init___ = (function() {
+  $n_Lgameoflife_SampleUniverses$ = this;
+  var this$2 = new $c_sci_StringOps().init___T("\n      |21b2o2b2o80b2o2b2o$21b2o2b2o80b2o2b2o$20b3o2b3o78b3o2b3o$20b3o2b3o78b\n      |3o2b3o2$20bo6bo78bo6bo$20bo2b2o2bo78bo2b2o2bo$21b6o80b6o$4b2o2b2o114b\n      |2o2b2o$4b2o2b2o114b2o2b2o$3b3o2b3o12b2o84b2o12b3o2b3o$3b3o2b3o11bo2bo\n      |82bo2bo11b3o2b3o$22b4o82b4o$3bo6bo10b2o2b2o80b2o2b2o10bo6bo$3bo2b2o2bo\n      |7bo2bo4bo2bo74bo2bo4bo2bo7bo2b2o2bo$4b6o11bo4bo80bo4bo11b6o$22b4o82b4o\n      |$18bo10bo74bo10bo$6b2o11bo8bo76bo8bo11b2o$5bo2bo116bo2bo$5b4o14b2o84b\n      |2o14b4o$4b2o2b2o114b2o2b2o$bo2bo4bo2bo108bo2bo4bo2bo$4bo4bo114bo4bo$5b\n      |4o21bo94b4o$bo10bo16b2o90bo10bo$2bo8bo17bobo90bo8bo2$6b2o118b2o21$3b2o\n      |2b2o116b2o2b2o$3b2o2b2o116b2o2b2o$2b3o2b3o114b3o2b3o$2b3o2b3o114b3o2b\n      |3o2$2bo6bo114bo6bo$2bo2b2o2bo114bo2b2o2bo$3b6o116b6o3$5b2o120b2o$4bo2b\n      |o118bo2bo$4b4o118b4o$3b2o2b2o116b2o2b2o$o2bo4bo2bo110bo2bo4bo2bo$3bo4b\n      |o116bo4bo$4b4o118b4o$o10bo110bo10bo$bo8bo112bo8bo2$5b2o120b2o3$6b2o2b\n      |2o110b2o2b2o$6b2o2b2o110b2o2b2o$5b3o2b3o108b3o2b3o$5b3o2b3o108b3o2b3o\n      |2$5bo6bo22b2o2b2o52b2o2b2o22bo6bo$5bo2b2o2bo22b2o2b2o52b2o2b2o22bo2b2o\n      |2bo$6b6o22b3o2b3o50b3o2b3o22b6o$34b3o2b3o50b3o2b3o2$8b2o24bo6bo50bo6bo\n      |24b2o$7bo2bo23bo2b2o2bo50bo2b2o2bo23bo2bo$7b4o24b6o52b6o24b4o$6b2o2b2o\n      |110b2o2b2o$3bo2bo4bo2bo104bo2bo4bo2bo$6bo4bo25b2o56b2o25bo4bo$7b4o25bo\n      |2bo54bo2bo25b4o$3bo10bo21b4o54b4o21bo10bo$4bo8bo21b2o2b2o52b2o2b2o21bo\n      |8bo$32bo2bo4bo2bo46bo2bo4bo2bo$8b2o25bo4bo52bo4bo25b2o$14b2o2b2o16b4o\n      |54b4o16b2o2b2o$14b2o2b2o12bo10bo46bo10bo12b2o2b2o$13b3o2b3o12bo8bo48bo\n      |8bo12b3o2b3o$13b3o2b3o92b3o2b3o$37b2o56b2o$13bo6bo92bo6bo$13bo2b2o2bo\n      |92bo2b2o2bo$14b6o94b6o3$16b2o98b2o$15bo2bo96bo2bo$15b4o96b4o$14b2o2b2o\n      |94b2o2b2o$11bo2bo4bo2bo88bo2bo4bo2bo$14bo4bo94bo4bo$15b4o96b4o$11bo10b\n      |o88bo10bo$12bo8bo90bo8bo2$16b2o98b2o!\n    ");
+  this.glider$1 = $f_sci_StringLike__stripMargin__C__T(this$2, 124);
+  var this$4 = new $c_sci_StringOps().init___T("\n      |136b2o$136b2o5b2o$143b2o3$112b2o27b2o$112b2o5bob2o18b2o$119b2obo24b2o$\n      |147b2o$106b2o22b3o$106b2o20bo4bo$110b2o18bob2o$110b2o15b3o$126bo$146b\n      |2o$146bo$105b2o40bo$105b2o39b2o7$15b2o76b2o$15b2o76b2obo$97bo$94bo$95b\n      |ob2o$97b2o2$152b2o$7b2o143b2o$7b2o3$147b2o$147b2o$151b2o$18b3o130b2o$\n      |17bo2bo89b2o$17bo3bo88b2o24bob2o$16b2o2bo84bo10b2o18b2obo5b2o$3bo14bo\n      |85bobo9b2o27b2o$3bobo13b2o82bo3bo$3bo2bo12b3o80bo3bo$5bo13b3o79bo3bo8b\n      |2o$3b2o95bo3bo9b2o5b2o$5bo95bobo17b2o$5b3o94bo$6bo11b3o6bo$3bobo19b2o$\n      |bo2bo23b2o$o25bobo$bobo23b2o$28bo$28bobo$27bo2bo$27b2o$27bo$23b3o9$42b\n      |2o$47bo$41bob5o$40b3o2bo3bo$46bobo$39bo8bo$39bo$39bo2$53b2o3bo$49bo3b\n      |3obob2o$49bo3b3o4bo$49bo6bo3bo$57b3o$57bo16b2o$74b2o7$66b2o$50bo15b2o$\n      |49b2o3bo$48bob2obobo$47bo4bo$45bo2bo3bob3o2$45bobo$46bo!\n    ");
+  this.cells$1 = $f_sci_StringLike__stripMargin__C__T(this$4, 124);
+  var this$6 = new $c_sci_StringOps().init___T("\n      |56bo$55b3o$54b3obo14bo$53boo3boo6bobbo3bo$52boobobboo6bo3bobbo$53boobo\n      |boo5bo$54b3oboo6boboo$56bo4bo$57b4o20boo$59bo12boboo5boo$72b3o$73bo$$\n      |80b3o$85b3o$79bobbo3boo$80b5obobboo$80boobo3boobo$81boo4b3o$81bobobob\n      |oo$61boo13boo$61boo4bo7bo$66b3o6b3o$48b3o15bobbo5boo$47bo19boo6bo$46bo\n      |4boo13bo$45bo3bo18bo$45bobbo4bo12bo$45bo3bo3bo12b3o$46boobob3o$26bo22b\n      |o$25b3o22b4o$24b3obo14bo8boo$23boo3boo6bobbo3bo$22boobobboo6bo3bobbo$\n      |23booboboo5bo$24b3oboo6boboo$26bo4bo$27b4o$29bo12boboo$42b3o$43bo9$31b\n      |oo$31boo$39boo$obbo35boo$4bo$o3bo$b4o!\n    ");
+  this.compactCodership$1 = $f_sci_StringLike__stripMargin__C__T(this$6, 124);
+  var this$8 = new $c_sci_StringOps().init___T("\n      |6bo13bo$5b3o11b3o$3b2ob3o9b3ob2o$4bo2bob2o5b2obo2bo$b2obo4bobo3bobo4bo\n      |b2o$b2obobo2bob2ob2obo2bobob2o$bo8bobobobo8bo$2o7b2obobob2o7b2o$12bobo\n      |$7b3obo3bob3o$6b2o11b2o$6bo5bo4b2o2bo$5b2o4b3o3b2o2bo$11bob2o3b3o$12b\n      |3o4bo$12b3o$12b3o$12b2o2$19bobo$20b2o$15b2o3bo$16b2o$15bo!\n    ");
+  this.parasites$1 = $f_sci_StringLike__stripMargin__C__T(this$8, 124);
+  var this$9 = $m_s_package$().Vector$1;
+  var array = [this.glider$1, this.cells$1, this.compactCodership$1, this.parasites$1];
+  if (($uI(array.length) === 0)) {
+    var jsx$1 = this$9.NIL$6
+  } else {
+    var b = new $c_sci_VectorBuilder().init___();
+    var i = 0;
+    var len = $uI(array.length);
+    while ((i < len)) {
+      var index = i;
+      var arg1 = array[index];
+      b.$$plus$eq__O__sci_VectorBuilder(arg1);
+      i = ((1 + i) | 0)
+    };
+    var jsx$1 = b.result__sci_Vector()
+  };
+  this.all$1 = jsx$1;
+  return this
+});
+var $d_Lgameoflife_SampleUniverses$ = new $TypeData().initClass({
+  Lgameoflife_SampleUniverses$: 0
+}, false, "gameoflife.SampleUniverses$", {
+  Lgameoflife_SampleUniverses$: 1,
+  O: 1
+});
+$c_Lgameoflife_SampleUniverses$.prototype.$classData = $d_Lgameoflife_SampleUniverses$;
+var $n_Lgameoflife_SampleUniverses$ = (void 0);
+function $m_Lgameoflife_SampleUniverses$() {
+  if ((!$n_Lgameoflife_SampleUniverses$)) {
+    $n_Lgameoflife_SampleUniverses$ = new $c_Lgameoflife_SampleUniverses$().init___()
+  };
+  return $n_Lgameoflife_SampleUniverses$
 }
 /** @constructor */
 function $c_Lorg_scalajs_dom_package$() {
@@ -6084,20 +6084,20 @@ function $m_Lgameoflife_RleParser$() {
   return $n_Lgameoflife_RleParser$
 }
 /** @constructor */
-function $c_Lgameoflife_UniverseImpl$() {
+function $c_Lgameoflife_VectorUniverse$() {
   $c_O.call(this)
 }
-$c_Lgameoflife_UniverseImpl$.prototype = new $h_O();
-$c_Lgameoflife_UniverseImpl$.prototype.constructor = $c_Lgameoflife_UniverseImpl$;
+$c_Lgameoflife_VectorUniverse$.prototype = new $h_O();
+$c_Lgameoflife_VectorUniverse$.prototype.constructor = $c_Lgameoflife_VectorUniverse$;
 /** @constructor */
-function $h_Lgameoflife_UniverseImpl$() {
+function $h_Lgameoflife_VectorUniverse$() {
   /*<skip>*/
 }
-$h_Lgameoflife_UniverseImpl$.prototype = $c_Lgameoflife_UniverseImpl$.prototype;
-$c_Lgameoflife_UniverseImpl$.prototype.init___ = (function() {
+$h_Lgameoflife_VectorUniverse$.prototype = $c_Lgameoflife_VectorUniverse$.prototype;
+$c_Lgameoflife_VectorUniverse$.prototype.init___ = (function() {
   return this
 });
-$c_Lgameoflife_UniverseImpl$.prototype.next__F1__I__I__F1 = (function(universe, rows, columns) {
+$c_Lgameoflife_VectorUniverse$.prototype.next__F1__I__I__F1 = (function(universe, rows, columns) {
   var nextU = $m_Lgameoflife_GameOfLife$().next__F1__F1(universe);
   var this$4 = new $c_sci_Range().init___I__I__I(0, rows, 1);
   $m_sci_Vector$();
@@ -6125,9 +6125,9 @@ $c_Lgameoflife_UniverseImpl$.prototype.next__F1__I__I__F1 = (function(universe, 
     b.$$plus$eq__O__scm_Builder($as_sci_Vector($f_sc_TraversableLike__map__F1__scg_CanBuildFrom__O(this$15, f, bf$1)))
   };
   var u = $as_sci_Vector(b.result__O());
-  return new $c_Lgameoflife_UniverseImpl().init___sci_Vector__I__I(u, rows, columns)
+  return new $c_Lgameoflife_VectorUniverse().init___sci_Vector__I__I(u, rows, columns)
 });
-$c_Lgameoflife_UniverseImpl$.prototype.from__T__F1 = (function(universe) {
+$c_Lgameoflife_VectorUniverse$.prototype.from__T__F1 = (function(universe) {
   var board = $m_Lgameoflife_RleParser$().apply__T__sci_Vector(universe);
   var rows = (board.length__I() << 1);
   $m_s_package$();
@@ -6140,23 +6140,23 @@ $c_Lgameoflife_UniverseImpl$.prototype.from__T__F1 = (function(universe) {
   var ord = $m_s_math_Ordering$Int$();
   var cmp = new $c_s_math_Ordering$$anon$10().init___F1__s_math_Ordering(f, ord);
   var columns = ($as_sc_SeqLike($f_sc_TraversableOnce__max__s_math_Ordering__O(board, cmp)).size__I() << 1);
-  return new $c_Lgameoflife_UniverseImpl().init___sci_Vector__I__I(board, rows, columns)
+  return new $c_Lgameoflife_VectorUniverse().init___sci_Vector__I__I(board, rows, columns)
 });
-var $d_Lgameoflife_UniverseImpl$ = new $TypeData().initClass({
-  Lgameoflife_UniverseImpl$: 0
-}, false, "gameoflife.UniverseImpl$", {
-  Lgameoflife_UniverseImpl$: 1,
+var $d_Lgameoflife_VectorUniverse$ = new $TypeData().initClass({
+  Lgameoflife_VectorUniverse$: 0
+}, false, "gameoflife.VectorUniverse$", {
+  Lgameoflife_VectorUniverse$: 1,
   O: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lgameoflife_UniverseImpl$.prototype.$classData = $d_Lgameoflife_UniverseImpl$;
-var $n_Lgameoflife_UniverseImpl$ = (void 0);
-function $m_Lgameoflife_UniverseImpl$() {
-  if ((!$n_Lgameoflife_UniverseImpl$)) {
-    $n_Lgameoflife_UniverseImpl$ = new $c_Lgameoflife_UniverseImpl$().init___()
+$c_Lgameoflife_VectorUniverse$.prototype.$classData = $d_Lgameoflife_VectorUniverse$;
+var $n_Lgameoflife_VectorUniverse$ = (void 0);
+function $m_Lgameoflife_VectorUniverse$() {
+  if ((!$n_Lgameoflife_VectorUniverse$)) {
+    $n_Lgameoflife_VectorUniverse$ = new $c_Lgameoflife_VectorUniverse$().init___()
   };
-  return $n_Lgameoflife_UniverseImpl$
+  return $n_Lgameoflife_VectorUniverse$
 }
 var $d_jl_Boolean = new $TypeData().initClass({
   jl_Boolean: 0
@@ -10945,37 +10945,37 @@ var $d_sr_ScalaRunTime$$anon$1 = new $TypeData().initClass({
 });
 $c_sr_ScalaRunTime$$anon$1.prototype.$classData = $d_sr_ScalaRunTime$$anon$1;
 /** @constructor */
-function $c_Lgameoflife_UniverseImpl() {
+function $c_Lgameoflife_VectorUniverse() {
   $c_O.call(this);
   this.universe$1 = null;
   this.rows$1 = 0;
   this.columns$1 = 0
 }
-$c_Lgameoflife_UniverseImpl.prototype = new $h_O();
-$c_Lgameoflife_UniverseImpl.prototype.constructor = $c_Lgameoflife_UniverseImpl;
+$c_Lgameoflife_VectorUniverse.prototype = new $h_O();
+$c_Lgameoflife_VectorUniverse.prototype.constructor = $c_Lgameoflife_VectorUniverse;
 /** @constructor */
-function $h_Lgameoflife_UniverseImpl() {
+function $h_Lgameoflife_VectorUniverse() {
   /*<skip>*/
 }
-$h_Lgameoflife_UniverseImpl.prototype = $c_Lgameoflife_UniverseImpl.prototype;
-$c_Lgameoflife_UniverseImpl.prototype.productPrefix__T = (function() {
-  return "UniverseImpl"
+$h_Lgameoflife_VectorUniverse.prototype = $c_Lgameoflife_VectorUniverse.prototype;
+$c_Lgameoflife_VectorUniverse.prototype.productPrefix__T = (function() {
+  return "VectorUniverse"
 });
-$c_Lgameoflife_UniverseImpl.prototype.apply__O__O = (function(v1) {
+$c_Lgameoflife_VectorUniverse.prototype.apply__O__O = (function(v1) {
   return this.apply__Lgameoflife_Cell__Lgameoflife_Liveness($as_Lgameoflife_Cell(v1))
 });
-$c_Lgameoflife_UniverseImpl.prototype.productArity__I = (function() {
+$c_Lgameoflife_VectorUniverse.prototype.productArity__I = (function() {
   return 3
 });
-$c_Lgameoflife_UniverseImpl.prototype.equals__O__Z = (function(x$1) {
+$c_Lgameoflife_VectorUniverse.prototype.equals__O__Z = (function(x$1) {
   if ((this === x$1)) {
     return true
-  } else if ($is_Lgameoflife_UniverseImpl(x$1)) {
-    var UniverseImpl$1 = $as_Lgameoflife_UniverseImpl(x$1);
+  } else if ($is_Lgameoflife_VectorUniverse(x$1)) {
+    var VectorUniverse$1 = $as_Lgameoflife_VectorUniverse(x$1);
     var x = this.universe$1;
-    var x$2 = UniverseImpl$1.universe$1;
-    if ((((x === null) ? (x$2 === null) : $f_sc_GenSeqLike__equals__O__Z(x, x$2)) && (this.rows$1 === UniverseImpl$1.rows$1))) {
-      return (this.columns$1 === UniverseImpl$1.columns$1)
+    var x$2 = VectorUniverse$1.universe$1;
+    if ((((x === null) ? (x$2 === null) : $f_sc_GenSeqLike__equals__O__Z(x, x$2)) && (this.rows$1 === VectorUniverse$1.rows$1))) {
+      return (this.columns$1 === VectorUniverse$1.columns$1)
     } else {
       return false
     }
@@ -10983,7 +10983,7 @@ $c_Lgameoflife_UniverseImpl.prototype.equals__O__Z = (function(x$1) {
     return false
   }
 });
-$c_Lgameoflife_UniverseImpl.prototype.productElement__I__O = (function(x$1) {
+$c_Lgameoflife_VectorUniverse.prototype.productElement__I__O = (function(x$1) {
   switch (x$1) {
     case 0: {
       return this.universe$1;
@@ -11002,10 +11002,10 @@ $c_Lgameoflife_UniverseImpl.prototype.productElement__I__O = (function(x$1) {
     }
   }
 });
-$c_Lgameoflife_UniverseImpl.prototype.toString__T = (function() {
+$c_Lgameoflife_VectorUniverse.prototype.toString__T = (function() {
   return "<function1>"
 });
-$c_Lgameoflife_UniverseImpl.prototype.apply__Lgameoflife_Cell__Lgameoflife_Liveness = (function(cell) {
+$c_Lgameoflife_VectorUniverse.prototype.apply__Lgameoflife_Cell__Lgameoflife_Liveness = (function(cell) {
   try {
     var jsx$1 = new $c_s_util_Success().init___O($as_Lgameoflife_Liveness($as_sci_Vector(this.universe$1.apply__I__O(cell.x$1)).apply__I__O(cell.y$1)))
   } catch (e) {
@@ -11032,38 +11032,38 @@ $c_Lgameoflife_UniverseImpl.prototype.apply__Lgameoflife_Cell__Lgameoflife_Liven
     })
   })(this))))
 });
-$c_Lgameoflife_UniverseImpl.prototype.hashCode__I = (function() {
+$c_Lgameoflife_VectorUniverse.prototype.hashCode__I = (function() {
   var acc = (-889275714);
   acc = $m_sr_Statics$().mix__I__I__I(acc, $m_sr_Statics$().anyHash__O__I(this.universe$1));
   acc = $m_sr_Statics$().mix__I__I__I(acc, this.rows$1);
   acc = $m_sr_Statics$().mix__I__I__I(acc, this.columns$1);
   return $m_sr_Statics$().finalizeHash__I__I__I(acc, 3)
 });
-$c_Lgameoflife_UniverseImpl.prototype.productIterator__sc_Iterator = (function() {
+$c_Lgameoflife_VectorUniverse.prototype.productIterator__sc_Iterator = (function() {
   return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
 });
-$c_Lgameoflife_UniverseImpl.prototype.init___sci_Vector__I__I = (function(universe, rows, columns) {
+$c_Lgameoflife_VectorUniverse.prototype.init___sci_Vector__I__I = (function(universe, rows, columns) {
   this.universe$1 = universe;
   this.rows$1 = rows;
   this.columns$1 = columns;
   return this
 });
-function $is_Lgameoflife_UniverseImpl(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgameoflife_UniverseImpl)))
+function $is_Lgameoflife_VectorUniverse(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgameoflife_VectorUniverse)))
 }
-function $as_Lgameoflife_UniverseImpl(obj) {
-  return (($is_Lgameoflife_UniverseImpl(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "gameoflife.UniverseImpl"))
+function $as_Lgameoflife_VectorUniverse(obj) {
+  return (($is_Lgameoflife_VectorUniverse(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "gameoflife.VectorUniverse"))
 }
-function $isArrayOf_Lgameoflife_UniverseImpl(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgameoflife_UniverseImpl)))
+function $isArrayOf_Lgameoflife_VectorUniverse(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgameoflife_VectorUniverse)))
 }
-function $asArrayOf_Lgameoflife_UniverseImpl(obj, depth) {
-  return (($isArrayOf_Lgameoflife_UniverseImpl(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgameoflife.UniverseImpl;", depth))
+function $asArrayOf_Lgameoflife_VectorUniverse(obj, depth) {
+  return (($isArrayOf_Lgameoflife_VectorUniverse(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgameoflife.VectorUniverse;", depth))
 }
-var $d_Lgameoflife_UniverseImpl = new $TypeData().initClass({
-  Lgameoflife_UniverseImpl: 0
-}, false, "gameoflife.UniverseImpl", {
-  Lgameoflife_UniverseImpl: 1,
+var $d_Lgameoflife_VectorUniverse = new $TypeData().initClass({
+  Lgameoflife_VectorUniverse: 0
+}, false, "gameoflife.VectorUniverse", {
+  Lgameoflife_VectorUniverse: 1,
   O: 1,
   F1: 1,
   s_Product: 1,
@@ -11071,7 +11071,7 @@ var $d_Lgameoflife_UniverseImpl = new $TypeData().initClass({
   s_Serializable: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lgameoflife_UniverseImpl.prototype.$classData = $d_Lgameoflife_UniverseImpl;
+$c_Lgameoflife_VectorUniverse.prototype.$classData = $d_Lgameoflife_VectorUniverse;
 /** @constructor */
 function $c_T2() {
   $c_O.call(this);
@@ -19451,6 +19451,6 @@ var $d_scm_ArrayBuffer = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_scm_ArrayBuffer.prototype.$classData = $d_scm_ArrayBuffer;
-$m_Lgameoflife_Serializer$().main__AT__V($makeNativeArrayWrapper($d_T.getArrayOf(), []));
+$m_Lgameoflife_HtmlAnimation$().main__AT__V($makeNativeArrayWrapper($d_T.getArrayOf(), []));
 }).call(this);
 //# sourceMappingURL=conwaysgameoflife-fastopt.js.map

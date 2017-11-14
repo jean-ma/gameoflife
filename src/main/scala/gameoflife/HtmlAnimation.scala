@@ -7,7 +7,7 @@ import org.scalajs.dom.html.Canvas
 
 import scala.util.Random
 
-object Serializer {
+object HtmlAnimation {
 
   def main(args: Array[String]): Unit = {
     val canvas = init()
@@ -16,10 +16,10 @@ object Serializer {
 
     dom.window.setInterval(
       () => {
-        val u = UniverseImpl.next(varU, 100, 100)
-        loop(canvas, varU, 100, 100)
+        val u = VectorUniverse.next(varU)
+        loop(canvas, varU)
 
-        if(stationary(u, varU, 20, 20)) {
+        if(stationary(u, varU)) {
           varU = randomUniverse
         } else {
           varU = u
@@ -29,51 +29,48 @@ object Serializer {
     )
   }
 
-  private def stationary(universe1: Universe, universe2: Universe, rows: Int, columns: Int): Boolean = {
+  private def stationary(u1: VectorUniverse, u2: VectorUniverse): Boolean = {
     for {
-      r <- 0 until rows
-      c <- 0 until columns
+      r <- 0 until Math.max(u1.rows, u2.rows)
+      c <- 0 until Math.max(u1.columns, u2.columns)
     } yield {
       Cell(r, c)
     }
-  } forall { cell: Cell => universe1(cell) == universe2(cell) }
+  } forall { cell: Cell => u1(cell) == u2(cell) }
 
-  private def randomUniverse: Universe = {
-    val allUniverses = InitUniverse.all
+  private def randomUniverse: VectorUniverse = {
+    val allUniverses = SampleUniverses.all
 
     val random = new Random().nextInt(allUniverses.length)
 
-    UniverseImpl.from(
-      InitUniverse.all(random))
+    VectorUniverse.from(
+      SampleUniverses.all(random))
   }
 
   private def init(): Canvas = {
     val canvas = document.createElement("canvas").asInstanceOf[Canvas]
     document.body.style.backgroundColor = "black"
-    canvas.setAttribute("id", "ui")
+    canvas.setAttribute("id", "universe")
     canvas.width = (0.95 * dom.window.innerWidth).toInt
     canvas.height = (0.95 * dom.window.innerHeight).toInt
 
     dom.document.body.appendChild(canvas)
 
-    println(s"${canvas.width} - ${canvas.height}")
     canvas
   }
 
-  private def loop(canvas: Canvas, universe: Universe, rows: Int, columns: Int): Unit = {
+  private def loop(canvas: Canvas, universe: VectorUniverse): Unit = {
     val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
     ctx.fillStyle = "black"
     ctx.fillRect(0,0,canvas.width,canvas.height)
     ctx.fillStyle = "white"
 
-    val cellLength = canvas.width / columns
+    val cellLength = canvas.width / universe.columns
 
-    (0 until rows).foreach { r =>
-      (0 until columns).foreach { c =>
+    (0 until universe.rows).foreach { r =>
+      (0 until universe.columns).foreach { c =>
         universe(Cell(r, c)) match {
-          case Alive =>
-            println(s"${r * cellLength}, ${c * cellLength}, $cellLength, $cellLength")
-            ctx.fillRect(c * cellLength, r * cellLength, cellLength, cellLength)
+          case Alive => ctx.fillRect(c * cellLength, r * cellLength, cellLength, cellLength)
           case _ => Unit
         }
       }

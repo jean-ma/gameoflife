@@ -1,9 +1,6 @@
 package gameoflife
 
-/**
- *
- */
-object InitUniverse {
+object SampleUniverses {
   val glider: String =
     """
       |21b2o2b2o80b2o2b2o$21b2o2b2o80b2o2b2o$20b3o2b3o78b3o2b3o$20b3o2b3o78b
