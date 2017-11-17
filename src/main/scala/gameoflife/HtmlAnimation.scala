@@ -44,7 +44,7 @@ object HtmlAnimation {
     val random = new Random().nextInt(allUniverses.length)
 
     VectorUniverse.from(
-      SampleUniverses.glider)
+      SampleUniverses.all(random))
   }
 
   private def init(): Canvas = {

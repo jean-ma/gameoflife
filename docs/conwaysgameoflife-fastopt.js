@@ -2161,8 +2161,8 @@ $c_Lgameoflife_HtmlAnimation$.prototype.randomUniverse__p1__Lgameoflife_VectorUn
   var allUniverses = $m_Lgameoflife_SampleUniverses$().all$1;
   var this$1 = new $c_s_util_Random().init___();
   var n = allUniverses.length__I();
-  this$1.self$1.nextInt__I__I(n);
-  return $m_Lgameoflife_VectorUniverse$().from__T__Lgameoflife_VectorUniverse($m_Lgameoflife_SampleUniverses$().glider$1)
+  var random = this$1.self$1.nextInt__I__I(n);
+  return $m_Lgameoflife_VectorUniverse$().from__T__Lgameoflife_VectorUniverse($as_T($m_Lgameoflife_SampleUniverses$().all$1.apply__I__O(random)))
 });
 var $d_Lgameoflife_HtmlAnimation$ = new $TypeData().initClass({
   Lgameoflife_HtmlAnimation$: 0
