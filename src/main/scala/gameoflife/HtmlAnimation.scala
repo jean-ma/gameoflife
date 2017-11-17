@@ -44,7 +44,7 @@ object HtmlAnimation {
     val random = new Random().nextInt(allUniverses.length)
 
     VectorUniverse.from(
-      SampleUniverses.all(random))
+      SampleUniverses.glider)
   }
 
   private def init(): Canvas = {
@@ -65,12 +65,14 @@ object HtmlAnimation {
     ctx.fillRect(0,0,canvas.width,canvas.height)
     ctx.fillStyle = "white"
 
-    val cellLength = canvas.width / universe.columns
+    val cellLength = Math.min(canvas.width / universe.columns, canvas.height / universe.rows)
+    val leftMargin = (canvas.width - cellLength * universe.columns) / 2
+    val topMargin = (canvas.height - cellLength * universe.rows) / 2
 
     (0 until universe.rows).foreach { r =>
       (0 until universe.columns).foreach { c =>
         universe(Cell(r, c)) match {
-          case Alive => ctx.fillRect(c * cellLength, r * cellLength, cellLength, cellLength)
+          case Alive => ctx.fillRect(leftMargin + c * cellLength, topMargin + r * cellLength, cellLength, cellLength)
           case _ => Unit
         }
       }

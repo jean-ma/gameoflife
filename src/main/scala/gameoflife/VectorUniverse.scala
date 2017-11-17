@@ -13,8 +13,8 @@ object VectorUniverse {
 
   def from(universe: String): VectorUniverse = {
     val board = RleParser(universe)
-    val rows = board.size * 2
-    val columns = board.max(Ordering.by[(Vector[Liveness]), Int](_.size)).size * 2
+    val rows = board.size
+    val columns = board.max(Ordering.by[(Vector[Liveness]), Int](_.size)).size
     VectorUniverse(board, rows, columns)
   }
 
