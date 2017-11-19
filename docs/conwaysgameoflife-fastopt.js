@@ -2023,16 +2023,62 @@ $c_Lgameoflife_HtmlAnimation$.prototype.init__p1__Lorg_scalajs_dom_raw_HTMLCanva
   $m_Lorg_scalajs_dom_package$().document__Lorg_scalajs_dom_raw_HTMLDocument().body.appendChild(canvas);
   return canvas
 });
-$c_Lgameoflife_HtmlAnimation$.prototype.gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O = (function(canvas$1, varU$1) {
-  var u = $m_Lgameoflife_VectorUniverse$().next__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse($as_Lgameoflife_VectorUniverse(varU$1.elem$1));
-  this.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__V(canvas$1, $as_Lgameoflife_VectorUniverse(varU$1.elem$1));
-  if (this.stationary__p1__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse__Z(u, $as_Lgameoflife_VectorUniverse(varU$1.elem$1))) {
-    varU$1.elem$1 = this.randomUniverse__p1__Lgameoflife_VectorUniverse();
-    return (void 0)
-  } else {
-    varU$1.elem$1 = u;
-    return (void 0)
+$c_Lgameoflife_HtmlAnimation$.prototype.loop__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse = (function(canvas, varU) {
+  var u = $m_Lgameoflife_VectorUniverse$().next__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse(varU);
+  this.render__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__V(canvas, varU);
+  return (this.stationary__p1__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse__Z(u, varU) ? this.randomUniverse__p1__Lgameoflife_VectorUniverse() : u)
+});
+$c_Lgameoflife_HtmlAnimation$.prototype.render__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__V = (function(canvas, universe) {
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "black";
+  ctx.fillRect(0.0, 0.0, $uI(canvas.width), $uI(canvas.height));
+  ctx.fillStyle = "white";
+  var a = (($uI(canvas.width) / universe.columns$1) | 0);
+  var b = (($uI(canvas.height) / universe.rows$1) | 0);
+  var cellLength = ((a < b) ? a : b);
+  var leftMargin = (((($uI(canvas.width) - $imul(cellLength, universe.columns$1)) | 0) / 2) | 0);
+  var topMargin = (((($uI(canvas.height) - $imul(cellLength, universe.rows$1)) | 0) / 2) | 0);
+  var end = universe.rows$1;
+  var isEmpty$4 = (end <= 0);
+  var scala$collection$immutable$Range$$lastElement$4 = (((-1) + end) | 0);
+  if ((!isEmpty$4)) {
+    var i = 0;
+    while (true) {
+      var v1 = i;
+      var end$1 = universe.columns$1;
+      var isEmpty$4$1 = (end$1 <= 0);
+      var scala$collection$immutable$Range$$lastElement$4$1 = (((-1) + end$1) | 0);
+      if ((!isEmpty$4$1)) {
+        var i$1 = 0;
+        while (true) {
+          var arg1 = i$1;
+          var x1 = universe.apply__Lgameoflife_Cell__Lgameoflife_Liveness(new $c_Lgameoflife_Cell().init___I__I(v1, arg1));
+          var x = $m_Lgameoflife_Alive$();
+          if ((x === x1)) {
+            ctx.fillRect(((leftMargin + $imul(arg1, cellLength)) | 0), ((topMargin + $imul(v1, cellLength)) | 0), cellLength, cellLength)
+          };
+          if ((i$1 === scala$collection$immutable$Range$$lastElement$4$1)) {
+            break
+          };
+          i$1 = ((1 + i$1) | 0)
+        }
+      };
+      if ((i === scala$collection$immutable$Range$$lastElement$4)) {
+        break
+      };
+      i = ((1 + i) | 0)
+    }
   }
+});
+$c_Lgameoflife_HtmlAnimation$.prototype.main__AT__V = (function(args) {
+  var canvas = this.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement();
+  var elem = this.randomUniverse__p1__Lgameoflife_VectorUniverse();
+  var varU = new $c_sr_ObjectRef().init___O(elem);
+  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().setInterval((function(canvas$1, varU$1) {
+    return (function() {
+      return $m_Lgameoflife_HtmlAnimation$().gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O(canvas$1, varU$1)
+    })
+  })(canvas, varU), 500.0)
 });
 $c_Lgameoflife_HtmlAnimation$.prototype.stationary__p1__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse__Z = (function(u1, u2) {
   var a = u1.rows$1;
@@ -2105,64 +2151,15 @@ $c_Lgameoflife_HtmlAnimation$.prototype.stationary__p1__Lgameoflife_VectorUniver
   };
   return res
 });
-$c_Lgameoflife_HtmlAnimation$.prototype.main__AT__V = (function(args) {
-  var canvas = this.init__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement();
-  var elem = this.randomUniverse__p1__Lgameoflife_VectorUniverse();
-  var varU = new $c_sr_ObjectRef().init___O(elem);
-  $m_Lorg_scalajs_dom_package$().window__Lorg_scalajs_dom_raw_Window().setInterval((function(canvas$1, varU$1) {
-    return (function() {
-      return $m_Lgameoflife_HtmlAnimation$().gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O(canvas$1, varU$1)
-    })
-  })(canvas, varU), 1000.0)
-});
-$c_Lgameoflife_HtmlAnimation$.prototype.loop__p1__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__V = (function(canvas, universe) {
-  var ctx = canvas.getContext("2d");
-  ctx.fillStyle = "black";
-  ctx.fillRect(0.0, 0.0, $uI(canvas.width), $uI(canvas.height));
-  ctx.fillStyle = "white";
-  var a = (($uI(canvas.width) / universe.columns$1) | 0);
-  var b = (($uI(canvas.height) / universe.rows$1) | 0);
-  var cellLength = ((a < b) ? a : b);
-  var leftMargin = (((($uI(canvas.width) - $imul(cellLength, universe.columns$1)) | 0) / 2) | 0);
-  var topMargin = (((($uI(canvas.height) - $imul(cellLength, universe.rows$1)) | 0) / 2) | 0);
-  var end = universe.rows$1;
-  var isEmpty$4 = (end <= 0);
-  var scala$collection$immutable$Range$$lastElement$4 = (((-1) + end) | 0);
-  if ((!isEmpty$4)) {
-    var i = 0;
-    while (true) {
-      var v1 = i;
-      var end$1 = universe.columns$1;
-      var isEmpty$4$1 = (end$1 <= 0);
-      var scala$collection$immutable$Range$$lastElement$4$1 = (((-1) + end$1) | 0);
-      if ((!isEmpty$4$1)) {
-        var i$1 = 0;
-        while (true) {
-          var arg1 = i$1;
-          var x1 = universe.apply__Lgameoflife_Cell__Lgameoflife_Liveness(new $c_Lgameoflife_Cell().init___I__I(v1, arg1));
-          var x = $m_Lgameoflife_Alive$();
-          if ((x === x1)) {
-            ctx.fillRect(((leftMargin + $imul(arg1, cellLength)) | 0), ((topMargin + $imul(v1, cellLength)) | 0), cellLength, cellLength)
-          };
-          if ((i$1 === scala$collection$immutable$Range$$lastElement$4$1)) {
-            break
-          };
-          i$1 = ((1 + i$1) | 0)
-        }
-      };
-      if ((i === scala$collection$immutable$Range$$lastElement$4)) {
-        break
-      };
-      i = ((1 + i) | 0)
-    }
-  }
+$c_Lgameoflife_HtmlAnimation$.prototype.gameoflife$HtmlAnimation$$$anonfun$main$1__Lorg_scalajs_dom_raw_HTMLCanvasElement__sr_ObjectRef__O = (function(canvas$1, varU$1) {
+  varU$1.elem$1 = this.loop__Lorg_scalajs_dom_raw_HTMLCanvasElement__Lgameoflife_VectorUniverse__Lgameoflife_VectorUniverse(canvas$1, $as_Lgameoflife_VectorUniverse(varU$1.elem$1))
 });
 $c_Lgameoflife_HtmlAnimation$.prototype.randomUniverse__p1__Lgameoflife_VectorUniverse = (function() {
   var allUniverses = $m_Lgameoflife_SampleUniverses$().all$1;
   var this$1 = new $c_s_util_Random().init___();
   var n = allUniverses.length__I();
-  var random = this$1.self$1.nextInt__I__I(n);
-  return $m_Lgameoflife_VectorUniverse$().from__T__Lgameoflife_VectorUniverse($as_T($m_Lgameoflife_SampleUniverses$().all$1.apply__I__O(random)))
+  this$1.self$1.nextInt__I__I(n);
+  return $m_Lgameoflife_VectorUniverse$().from__T__Lgameoflife_VectorUniverse($m_Lgameoflife_SampleUniverses$().glider$1)
 });
 var $d_Lgameoflife_HtmlAnimation$ = new $TypeData().initClass({
   Lgameoflife_HtmlAnimation$: 0

@@ -72,4 +72,20 @@ class RleParserSpec extends FlatSpec {
 
     assert(RleParser(inputGrid) === expected)
   }
+
+  "parser" should "parse a file with comments" in {
+    val expected = Vector(
+      Vector(Dead, Dead, Alive),
+      Vector.empty[Liveness],
+      Vector.empty[Liveness],
+      Vector(Alive, Dead, Dead, Alive, Dead))
+    val inputGrid =
+      """
+        |# here is a comment
+        |2bo3$
+        |o2bob!
+        |""".stripMargin
+
+    assert(RleParser(inputGrid) === expected)
+  }
 }

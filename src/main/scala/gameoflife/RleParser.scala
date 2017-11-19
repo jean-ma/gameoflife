@@ -3,10 +3,16 @@ package gameoflife
 import scala.util.parsing.combinator.RegexParsers
 
 object RleParser extends RegexParsers {
-  def apply(input: String): Vector[Vector[Liveness]] = parseAll(grid, input) match {
+  def apply(input: String): Vector[Vector[Liveness]] = parseAll(rleContent, input) match {
     case Success(result, _) => result
     case failure: NoSuccess => scala.sys.error(failure.msg)
   }
+
+  private def rleContent: Parser[Vector[Vector[Liveness]]] = (comments ~ grid) ^^ {
+    case _ ~ grid => grid
+  }
+
+  private def comments: Parser[_] = rep("#.*".r)
 
   private def grid: Parser[Vector[Vector[Liveness]]] = rep(line ~ newLines) ^^ {
     lines => lines.flatMap {
