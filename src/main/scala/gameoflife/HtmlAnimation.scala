@@ -1,6 +1,5 @@
 package gameoflife
 
-import gameoflife.GameOfLife.Universe
 import org.scalajs.dom
 import dom.document
 import org.scalajs.dom.html.Canvas
@@ -9,23 +8,27 @@ import scala.util.Random
 
 object HtmlAnimation {
 
+  def loop(canvas: Canvas, varU: VectorUniverse): gameoflife.VectorUniverse = {
+    val u = VectorUniverse.next(varU)
+    render(canvas, varU)
+
+    if(stationary(u, varU)) {
+      randomUniverse
+    } else {
+      u
+    }
+  }
+
   def main(args: Array[String]): Unit = {
     val canvas = init()
 
-    var varU = randomUniverse
+    var universe = randomUniverse
 
     dom.window.setInterval(
       () => {
-        val u = VectorUniverse.next(varU)
-        loop(canvas, varU)
-
-        if(stationary(u, varU)) {
-          varU = randomUniverse
-        } else {
-          varU = u
-        }
+        universe = loop(canvas, universe)
       },
-      1000
+      500
     )
   }
 
@@ -59,7 +62,7 @@ object HtmlAnimation {
     canvas
   }
 
-  private def loop(canvas: Canvas, universe: VectorUniverse): Unit = {
+  private def render(canvas: Canvas, universe: VectorUniverse): Unit = {
     val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
     ctx.fillStyle = "black"
     ctx.fillRect(0,0,canvas.width,canvas.height)

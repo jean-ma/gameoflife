@@ -3,6 +3,7 @@ package gameoflife
 object SampleUniverses {
   val glider: String =
     """
+      |x = 134, y = 114
       |21b2o2b2o80b2o2b2o$21b2o2b2o80b2o2b2o$20b3o2b3o78b3o2b3o$20b3o2b3o78b
       |3o2b3o2$20bo6bo78bo6bo$20bo2b2o2bo78bo2b2o2bo$21b6o80b6o$4b2o2b2o114b
       |2o2b2o$4b2o2b2o114b2o2b2o$3b3o2b3o12b2o84b2o12b3o2b3o$3b3o2b3o11bo2bo
@@ -29,40 +30,58 @@ object SampleUniverses {
       |o88bo10bo$12bo8bo90bo8bo2$16b2o98b2o!
     """.stripMargin
 
-  val cells: String =
+  val compactShip: String =
     """
-      |136b2o$136b2o5b2o$143b2o3$112b2o27b2o$112b2o5bob2o18b2o$119b2obo24b2o$
-      |147b2o$106b2o22b3o$106b2o20bo4bo$110b2o18bob2o$110b2o15b3o$126bo$146b
-      |2o$146bo$105b2o40bo$105b2o39b2o7$15b2o76b2o$15b2o76b2obo$97bo$94bo$95b
-      |ob2o$97b2o2$152b2o$7b2o143b2o$7b2o3$147b2o$147b2o$151b2o$18b3o130b2o$
-      |17bo2bo89b2o$17bo3bo88b2o24bob2o$16b2o2bo84bo10b2o18b2obo5b2o$3bo14bo
-      |85bobo9b2o27b2o$3bobo13b2o82bo3bo$3bo2bo12b3o80bo3bo$5bo13b3o79bo3bo8b
-      |2o$3b2o95bo3bo9b2o5b2o$5bo95bobo17b2o$5b3o94bo$6bo11b3o6bo$3bobo19b2o$
-      |bo2bo23b2o$o25bobo$bobo23b2o$28bo$28bobo$27bo2bo$27b2o$27bo$23b3o9$42b
-      |2o$47bo$41bob5o$40b3o2bo3bo$46bobo$39bo8bo$39bo$39bo2$53b2o3bo$49bo3b
-      |3obob2o$49bo3b3o4bo$49bo6bo3bo$57b3o$57bo16b2o$74b2o7$66b2o$50bo15b2o$
-      |49b2o3bo$48bob2obobo$47bo4bo$45bo2bo3bob3o2$45bobo$46bo!
+      |#N LWSS tagalong
+      |#O David Bell
+      |#C A tagalong for two lightweight, middleweight, or heavyweight spaces
+      |#C hips.
+      |#C www.conwaylife.com/wiki/index.php?title=Lightweight_spaceship
+      |x = 25, y = 19
+      |21bo3b$18b4o3b$13bo2bob2o5b$13bo11b$4o8bo3bob2o5b$o3bo5b2ob2obobob5o$o
+      |9b2obobobo2b5o$bo2bo2b2o2bo3b3o2bob2ob$6bo2bob2o12b$6bo4b2o12b$6bo2bob
+      |2o12b$bo2bo2b2o2bo3b3o2bob2ob$o9b2obobobo2b5o$o3bo5b2ob2obobob5o$4o8bo
+      |3bob2o5b$13bo11b$13bo2bob2o5b$18b4o3b$21bo!
     """.stripMargin
 
-  val compactCodership: String =
+  val gliderDestruction: String =
     """
-      |56bo$55b3o$54b3obo14bo$53boo3boo6bobbo3bo$52boobobboo6bo3bobbo$53boobo
-      |boo5bo$54b3oboo6boboo$56bo4bo$57b4o20boo$59bo12boboo5boo$72b3o$73bo$$
-      |80b3o$85b3o$79bobbo3boo$80b5obobboo$80boobo3boobo$81boo4b3o$81bobobob
-      |oo$61boo13boo$61boo4bo7bo$66b3o6b3o$48b3o15bobbo5boo$47bo19boo6bo$46bo
-      |4boo13bo$45bo3bo18bo$45bobbo4bo12bo$45bo3bo3bo12b3o$46boobob3o$26bo22b
-      |o$25b3o22b4o$24b3obo14bo8boo$23boo3boo6bobbo3bo$22boobobboo6bo3bobbo$
-      |23booboboo5bo$24b3oboo6boboo$26bo4bo$27b4o$29bo12boboo$42b3o$43bo9$31b
-      |oo$31boo$39boo$obbo35boo$4bo$o3bo$b4o!
+      |#N Gosper glider gun (glider destruction)
+      |#O Dean Hickerson
+      |#C Complete destruction of Gosper glider gun with two gliders
+      |#C Glider destruction of the Gosper glider gun.
+      |#C http://www.conwaylife.com/wiki/Gosper_glider_gun
+      |#C http://www.conwaylife.com/patterns/gosperglidergungliderdestruction.rle
+      |x = 47, y = 26
+      |bo$2bo$3o6$15bo$15b4o$16b4o10b2o$5b2o9bo2bo9bobo$5b2o9b4o8b3o8b2o$15b
+      |4o8b3o9b2o$15bo12b3o$29bobo$30b2o7$45b2o$44b2o$46bo!
     """.stripMargin
 
-  val parasites: String =
+  val smallerPeriodGlider: String =
     """
-      |6bo13bo$5b3o11b3o$3b2ob3o9b3ob2o$4bo2bob2o5b2obo2bo$b2obo4bobo3bobo4bo
-      |b2o$b2obobo2bob2ob2obo2bobob2o$bo8bobobobo8bo$2o7b2obobob2o7b2o$12bobo
-      |$7b3obo3bob3o$6b2o11b2o$6bo5bo4b2o2bo$5b2o4b3o3b2o2bo$11bob2o3b3o$12b
-      |3o4bo$12b3o$12b3o$12b2o2$19bobo$20b2o$15b2o3bo$16b2o$15bo!
+      |#N twogun
+      |#O V. Everett Boyer and Doug Petrie
+      |#C The smallest known period-60 gun; it uses two copies of the Gosper
+      |#C glider gun.
+      |x = 39, y = 27
+      |27bo11b$25bobo11b$15b2o6b2o12b2o$14bo3bo4b2o12b2o$3b2o8bo5bo3b2o14b$3b
+      |2o8bo3bob2o4bobo11b$13bo5bo7bo11b$14bo3bo20b$15b2o22b$26bo12b$27b2o10b
+      |$26b2o11b4$21b2o16b$9bobo10b2o15b$9bo2bo8bo17b$2o10b2o11b2o12b$2o8bo3b
+      |2o8bobo12b$5b2o5b2o9bo6b2o7b$4bo4bo2bo10bo2bo2bo2bo6b$9bobo11bo6b3o6b$
+      |24bobo5b3o4b$25b2o6bobo3b$35bo3b$35b2o!
     """.stripMargin
 
-  val all = Vector(glider, cells, compactCodership, parasites)
+  val spaceship: String =
+    """
+      |#N 56P6H1V0
+      |#O Hartmut Holzwart
+      |#C Period 6 c/6 orthogonal spaceship. Discovered in May 2009.
+      |#C www.conwaylife.com/wiki/index.php?title=56P6H1V0
+      |x = 26, y = 12
+      |5b3o10b3o5b$3obo7b2o7bob3o$4bo3bo2bo2bo2bo3bo4b$4bo5bo4bo5bo4b$10b2o2b
+      |2o10b$7bo3bo2bo3bo7b$7bobo6bobo7b$8b10o8b$10bo4bo10b$8bo8bo8b$7bo10bo
+      |7b$8bo8bo!
+    """.stripMargin
+
+  val all = Vector(glider, spaceship, smallerPeriodGlider, gliderDestruction)
 }
