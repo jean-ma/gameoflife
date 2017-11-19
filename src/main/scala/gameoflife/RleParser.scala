@@ -5,9 +5,6 @@ import scala.util.parsing.combinator.RegexParsers
 object RleParser extends RegexParsers {
   case class Size(x: Int, y: Int)
 
-  type FixedSizeArray = Size => List[List[Liveness]]
-  type FixedSizeLine = Size => List[Liveness]
-
   def apply(input: String): Vector[Vector[Liveness]] = parseAll(rleContent, input) match {
     case Success(result, _) => result
     case failure: NoSuccess => scala.sys.error(failure.msg)
@@ -37,10 +34,6 @@ object RleParser extends RegexParsers {
     lines => lines.flatMap {
       case line ~ newLines => line +: newLines
     }
-  }
-
-  private def completeWithCells(line: List[Liveness], size: Size): List[Liveness] = {
-    line ::: List.fill(size.x - line.size)(Dead)
   }
 
   private def line: Parser[List[Liveness]] = rep(factorState) ^^ { line => line.flatten }

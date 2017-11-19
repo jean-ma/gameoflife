@@ -8,11 +8,11 @@ import scala.util.Random
 
 object HtmlAnimation {
 
-  def loop(canvas: Canvas, varU: VectorUniverse): gameoflife.VectorUniverse = {
-    val u = VectorUniverse.next(varU)
-    render(canvas, varU)
+  def loop(canvas: Canvas, universe: VectorUniverse): gameoflife.VectorUniverse = {
+    val u = universe.next
+    render(canvas, universe)
 
-    if(stationary(u, varU)) {
+    if(stationary(u, universe)) {
       randomUniverse
     } else {
       u
