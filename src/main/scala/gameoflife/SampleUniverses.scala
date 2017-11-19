@@ -3,7 +3,7 @@ package gameoflife
 object SampleUniverses {
   val glider: String =
     """
-      |x = 134, y = 114, rule = B3/S23
+      |x = 134, y = 114
       |21b2o2b2o80b2o2b2o$21b2o2b2o80b2o2b2o$20b3o2b3o78b3o2b3o$20b3o2b3o78b
       |3o2b3o2$20bo6bo78bo6bo$20bo2b2o2bo78bo2b2o2bo$21b6o80b6o$4b2o2b2o114b
       |2o2b2o$4b2o2b2o114b2o2b2o$3b3o2b3o12b2o84b2o12b3o2b3o$3b3o2b3o11bo2bo
@@ -40,7 +40,7 @@ object SampleUniverses {
       |#C A tagalong for two lightweight, middleweight, or heavyweight spaces
       |#C hips.
       |#C www.conwaylife.com/wiki/index.php?title=Lightweight_spaceship
-      |x = 25, y = 19, rule = b3/s23
+      |x = 25, y = 19
       |21bo3b$18b4o3b$13bo2bob2o5b$13bo11b$4o8bo3bob2o5b$o3bo5b2ob2obobob5o$o
       |9b2obobobo2b5o$bo2bo2b2o2bo3b3o2bob2ob$6bo2bob2o12b$6bo4b2o12b$6bo2bob
       |2o12b$bo2bo2b2o2bo3b3o2bob2ob$o9b2obobobo2b5o$o3bo5b2ob2obobob5o$4o8bo
@@ -55,7 +55,7 @@ object SampleUniverses {
       |#C Glider destruction of the Gosper glider gun.
       |#C http://www.conwaylife.com/wiki/Gosper_glider_gun
       |#C http://www.conwaylife.com/patterns/gosperglidergungliderdestruction.rle
-      |x = 47, y = 26, rule = B3/S23
+      |x = 47, y = 26
       |bo$2bo$3o6$15bo$15b4o$16b4o10b2o$5b2o9bo2bo9bobo$5b2o9b4o8b3o8b2o$15b
       |4o8b3o9b2o$15bo12b3o$29bobo$30b2o7$45b2o$44b2o$46bo!
     """.stripMargin
@@ -66,7 +66,7 @@ object SampleUniverses {
       |#O V. Everett Boyer and Doug Petrie
       |#C The smallest known period-60 gun; it uses two copies of the Gosper
       |#C glider gun.
-      |x = 39, y = 27, rule = b3/s23
+      |x = 39, y = 27
       |27bo11b$25bobo11b$15b2o6b2o12b2o$14bo3bo4b2o12b2o$3b2o8bo5bo3b2o14b$3b
       |2o8bo3bob2o4bobo11b$13bo5bo7bo11b$14bo3bo20b$15b2o22b$26bo12b$27b2o10b
       |$26b2o11b4$21b2o16b$9bobo10b2o15b$9bo2bo8bo17b$2o10b2o11b2o12b$2o8bo3b
@@ -80,7 +80,7 @@ object SampleUniverses {
       |#O Hartmut Holzwart
       |#C Period 6 c/6 orthogonal spaceship. Discovered in May 2009.
       |#C www.conwaylife.com/wiki/index.php?title=56P6H1V0
-      |x = 26, y = 12, rule = 23/3
+      |x = 26, y = 12
       |5b3o10b3o5b$3obo7b2o7bob3o$4bo3bo2bo2bo2bo3bo4b$4bo5bo4bo5bo4b$10b2o2b
       |2o10b$7bo3bo2bo3bo7b$7bobo6bobo7b$8b10o8b$10bo4bo10b$8bo8bo8b$7bo10bo
       |7b$8bo8bo!
