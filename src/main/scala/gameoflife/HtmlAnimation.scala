@@ -1,6 +1,5 @@
 package gameoflife
 
-import gameoflife.GameOfLife.Universe
 import org.scalajs.dom
 import dom.document
 import org.scalajs.dom.html.Canvas
@@ -9,7 +8,7 @@ import scala.util.Random
 
 object HtmlAnimation {
 
-  def loop(canvas: Canvas, varU: VectorUniverse): _root_.gameoflife.VectorUniverse = {
+  def loop(canvas: Canvas, varU: VectorUniverse): gameoflife.VectorUniverse = {
     val u = VectorUniverse.next(varU)
     render(canvas, varU)
 

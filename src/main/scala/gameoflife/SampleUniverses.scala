@@ -28,9 +28,6 @@ object SampleUniverses {
       |92bo2b2o2bo$14b6o94b6o3$16b2o98b2o$15bo2bo96bo2bo$15b4o96b4o$14b2o2b2o
       |94b2o2b2o$11bo2bo4bo2bo88bo2bo4bo2bo$14bo4bo94bo4bo$15b4o96b4o$11bo10b
       |o88bo10bo$12bo8bo90bo8bo2$16b2o98b2o!
-      | X
-      |LifeViewer
-      |
     """.stripMargin
 
   val compactShip: String =
