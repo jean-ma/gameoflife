@@ -2,11 +2,11 @@ package gameoflife
 
 import org.scalatest.FlatSpec
 
-class VectorUniverseSpec extends FlatSpec {
+class UniverseImplSpec extends FlatSpec {
   "parser" should "parse single element" in {
     val rows = 200
     val columns = 100
-    val u = VectorUniverse.from(SampleUniverses.glider).next
+    val u = UniverseImpl.from(SampleUniverses.glider).next
 
     val count = {
       for {

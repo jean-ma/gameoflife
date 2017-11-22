@@ -5,7 +5,7 @@ import scala.util.parsing.combinator.RegexParsers
 object RleParser extends RegexParsers {
   case class Size(x: Int, y: Int)
 
-  def apply(input: String): Vector[Vector[Liveness]] = parseAll(rleContent, input) match {
+  def apply(input: String): List[List[Liveness]] = parseAll(rleContent, input) match {
     case Success(result, _) => result
     case failure: NoSuccess => scala.sys.error(failure.msg)
   }
@@ -18,8 +18,8 @@ object RleParser extends RegexParsers {
     }
   }
 
-  private def rleContent: Parser[Vector[Vector[Liveness]]] = (comments ~ size ~ grid) ^^ {
-    case _ ~ size ~ grid => complete(grid, size).map(_.toVector).toVector
+  private def rleContent: Parser[List[List[Liveness]]] = (comments ~ size ~ grid) ^^ {
+    case _ ~ size ~ grid => complete(grid, size)
   }
 
   private def size: Parser[Size] = " *x *= *".r ~ number ~ ", *y *= *".r ~ number ^^ {

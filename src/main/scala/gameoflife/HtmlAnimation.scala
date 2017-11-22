@@ -8,7 +8,7 @@ import scala.util.Random
 
 object HtmlAnimation {
 
-  def loop(canvas: Canvas, universe: VectorUniverse): gameoflife.VectorUniverse = {
+  def loop(canvas: Canvas, universe: UniverseImpl): gameoflife.UniverseImpl = {
     val u = universe.next
     render(canvas, universe)
 
@@ -32,7 +32,7 @@ object HtmlAnimation {
     )
   }
 
-  private def stationary(u1: VectorUniverse, u2: VectorUniverse): Boolean = {
+  private def stationary(u1: UniverseImpl, u2: UniverseImpl): Boolean = {
     for {
       r <- 0 until Math.max(u1.rows, u2.rows)
       c <- 0 until Math.max(u1.columns, u2.columns)
@@ -41,12 +41,12 @@ object HtmlAnimation {
     }
   } forall { cell: Cell => u1(cell) == u2(cell) }
 
-  private def randomUniverse: VectorUniverse = {
+  private def randomUniverse: UniverseImpl = {
     val allUniverses = SampleUniverses.all
 
     val random = new Random().nextInt(allUniverses.length)
 
-    VectorUniverse.from(
+    UniverseImpl.from(
       SampleUniverses.all(random))
   }
 
@@ -62,7 +62,7 @@ object HtmlAnimation {
     canvas
   }
 
-  private def render(canvas: Canvas, universe: VectorUniverse): Unit = {
+  private def render(canvas: Canvas, universe: UniverseImpl): Unit = {
     val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
     ctx.fillStyle = "black"
     ctx.fillRect(0,0,canvas.width,canvas.height)
