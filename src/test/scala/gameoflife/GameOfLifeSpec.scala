@@ -13,7 +13,7 @@ class GameOfLifeSpec extends FlatSpec {
   }
 
   "Neighbors" should "return the number of alive neighbors" in {
-    assert(GameOfLife.countNeighbors(universe, isolatedCell) === 1)
+    assert(GameOfLife.countNeighbours(universe, isolatedCell) === 1)
   }
 
   "universe" should "give life to a dead cell with 3 Alive neighbors" in {

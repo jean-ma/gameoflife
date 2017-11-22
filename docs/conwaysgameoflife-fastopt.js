@@ -1640,7 +1640,8 @@ function $f_scm_HashTable$HashUtils__improve__I__I__I($thiz, hcode, seed) {
 }
 /** @constructor */
 function $c_Lgameoflife_GameOfLife$() {
-  $c_O.call(this)
+  $c_O.call(this);
+  this.neighbourIndices$1 = null
 }
 $c_Lgameoflife_GameOfLife$.prototype = new $h_O();
 $c_Lgameoflife_GameOfLife$.prototype.constructor = $c_Lgameoflife_GameOfLife$;
@@ -1650,22 +1651,7 @@ function $h_Lgameoflife_GameOfLife$() {
 }
 $h_Lgameoflife_GameOfLife$.prototype = $c_Lgameoflife_GameOfLife$.prototype;
 $c_Lgameoflife_GameOfLife$.prototype.init___ = (function() {
-  return this
-});
-$c_Lgameoflife_GameOfLife$.prototype.next__F1__F1 = (function(u) {
-  return new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, u$1) {
-    return (function(cell$2) {
-      var cell = $as_Lgameoflife_Cell(cell$2);
-      var x1 = $this.countNeighbors__F1__Lgameoflife_Cell__I(u$1, cell);
-      switch (x1) {
-        default: {
-          return ((x1 === 2) ? $as_Lgameoflife_Liveness(u$1.apply__O__O(cell)) : ((x1 === 3) ? $m_Lgameoflife_Alive$() : $m_Lgameoflife_Dead$()))
-        }
-      }
-    })
-  })(this, u))
-});
-$c_Lgameoflife_GameOfLife$.prototype.countNeighbors__F1__Lgameoflife_Cell__I = (function(universe, cell) {
+  $n_Lgameoflife_GameOfLife$ = this;
   $m_sci_IndexedSeq$();
   $m_sc_IndexedSeq$();
   $m_sci_IndexedSeq$();
@@ -1675,38 +1661,58 @@ $c_Lgameoflife_GameOfLife$.prototype.countNeighbors__F1__Lgameoflife_Cell__I = (
   while (true) {
     var arg1 = i;
     var this$10 = new $c_sci_Range$Inclusive().init___I__I__I((-1), 1, 1);
-    var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, i$1) {
-      return (function(j$2) {
-        var j = $uI(j$2);
-        return ((i$1 !== 0) || (j !== 0))
+    var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, row) {
+      return (function(column$2) {
+        var column = $uI(column$2);
+        return ((row !== 0) || (column !== 0))
       })
     })(this, arg1));
-    var this$12 = $as_sci_IndexedSeq(new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$10, p).map__F1__scg_CanBuildFrom__O(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, cell$1, i$2) {
-      return (function(j$3$2) {
-        var j$3 = $uI(j$3$2);
-        return new $c_Lgameoflife_Cell().init___I__I(((cell$1.x$1 + i$2) | 0), ((cell$1.y$1 + j$3) | 0))
+    var this$12 = $as_sci_IndexedSeq(new $c_sc_TraversableLike$WithFilter().init___sc_TraversableLike__F1(this$10, p).map__F1__scg_CanBuildFrom__O(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(this$2$1, row$1) {
+      return (function(column$3$2) {
+        var column$3 = $uI(column$3$2);
+        return new $c_s_Tuple2$mcII$sp().init___I__I(row$1, column$3)
       })
-    })(this, cell, arg1)), ($m_sci_IndexedSeq$(), $m_sc_IndexedSeq$().ReusableCBF$6)));
+    })(this, arg1)), ($m_sci_IndexedSeq$(), $m_sc_IndexedSeq$().ReusableCBF$6)));
     $as_sci_VectorBuilder($f_scg_Growable__$$plus$plus$eq__sc_TraversableOnce__scg_Growable(b, this$12));
     if ((i === 1)) {
       break
     };
     i = ((1 + i) | 0)
   };
-  var this$13 = b.result__sci_Vector();
-  var elem$1 = 0;
-  elem$1 = 0;
-  var this$15 = this$13.iterator__sci_VectorIterator();
-  while (this$15.$$undhasNext$2) {
-    var arg1$1 = this$15.next__O();
-    var cell$2 = $as_Lgameoflife_Cell(arg1$1);
-    var x = universe.apply__O__O(cell$2);
-    var x$2 = $m_Lgameoflife_Alive$();
-    if (((x !== null) && $objectEquals(x, x$2))) {
-      elem$1 = ((1 + elem$1) | 0)
-    }
-  };
-  return elem$1
+  this.neighbourIndices$1 = b.result__sci_Vector();
+  return this
+});
+$c_Lgameoflife_GameOfLife$.prototype.next__F1__F1 = (function(u) {
+  return new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, u$1) {
+    return (function(cell$2) {
+      var cell = $as_Lgameoflife_Cell(cell$2);
+      var x1 = $this.countNeighbours__F1__Lgameoflife_Cell__I(u$1, cell);
+      switch (x1) {
+        default: {
+          return ((x1 === 2) ? $as_Lgameoflife_Liveness(u$1.apply__O__O(cell)) : ((x1 === 3) ? $m_Lgameoflife_Alive$() : $m_Lgameoflife_Dead$()))
+        }
+      }
+    })
+  })(this, u))
+});
+$c_Lgameoflife_GameOfLife$.prototype.countNeighbours__F1__Lgameoflife_Cell__I = (function(universe, cell) {
+  var this$1 = this.neighbourIndices$1;
+  var p = new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, universe$1, cell$1) {
+    return (function(x0$1$2) {
+      var x0$1 = $as_T2(x0$1$2);
+      if ((x0$1 !== null)) {
+        var row = x0$1.$$und1$mcI$sp__I();
+        var column = x0$1.$$und2$mcI$sp__I();
+        var neighbour = new $c_Lgameoflife_Cell().init___I__I(((cell$1.x$1 + row) | 0), ((cell$1.y$1 + column) | 0));
+        var x = universe$1.apply__O__O(neighbour);
+        var x$2 = $m_Lgameoflife_Alive$();
+        return ((x !== null) && $objectEquals(x, x$2))
+      } else {
+        throw new $c_s_MatchError().init___O(x0$1)
+      }
+    })
+  })(this, universe, cell));
+  return $f_sc_TraversableOnce__count__F1__I(this$1, p)
 });
 var $d_Lgameoflife_GameOfLife$ = new $TypeData().initClass({
   Lgameoflife_GameOfLife$: 0
@@ -2897,6 +2903,17 @@ function $f_sc_TraversableOnce__to__scg_CanBuildFrom__O($thiz, cbf) {
   var b = cbf.apply__scm_Builder();
   b.$$plus$plus$eq__sc_TraversableOnce__scg_Growable($thiz.seq__sc_TraversableOnce());
   return b.result__O()
+}
+function $f_sc_TraversableOnce__count__F1__I($thiz, p) {
+  var cnt = new $c_sr_IntRef().init___I(0);
+  $thiz.foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function($this, p$1, cnt$1) {
+    return (function(x$2) {
+      if ($uZ(p$1.apply__O__O(x$2))) {
+        cnt$1.elem$1 = ((1 + cnt$1.elem$1) | 0)
+      }
+    })
+  })($thiz, p, cnt)));
+  return cnt.elem$1
 }
 function $f_sc_TraversableOnce__mkString__T__T__T__T($thiz, start, sep, end) {
   var this$1 = $thiz.addString__scm_StringBuilder__T__T__T__scm_StringBuilder(new $c_scm_StringBuilder().init___(), start, sep, end);
@@ -4732,11 +4749,11 @@ $c_s_Predef$$anon$3.prototype.$classData = $d_s_Predef$$anon$3;
 function $f_s_Product2__productElement__I__O($thiz, n) {
   switch (n) {
     case 0: {
-      return $thiz.$$und1$f;
+      return $thiz.$$und1__O();
       break
     }
     case 1: {
-      return $thiz.$$und2$f;
+      return $thiz.$$und2__O();
       break
     }
     default: {
@@ -6546,8 +6563,8 @@ $c_ju_regex_Pattern$.prototype.compile__T__I__ju_regex_Pattern = (function(regex
   if ((x1 === null)) {
     throw new $c_s_MatchError().init___O(x1)
   };
-  var jsPattern = $as_T(x1.$$und1$f);
-  var flags1$1 = $uI(x1.$$und2$f);
+  var jsPattern = $as_T(x1.$$und1__O());
+  var flags1$1 = x1.$$und2$mcI$sp__I();
   var jsFlags = (("g" + (((2 & flags1$1) !== 0) ? "i" : "")) + (((8 & flags1$1) !== 0) ? "m" : ""));
   var jsRegExp = new $g.RegExp(jsPattern, jsFlags);
   return new $c_ju_regex_Pattern().init___sjs_js_RegExp__T__I(jsRegExp, regex, flags1$1)
@@ -10975,6 +10992,9 @@ $h_T2.prototype = $c_T2.prototype;
 $c_T2.prototype.productPrefix__T = (function() {
   return "Tuple2"
 });
+$c_T2.prototype.$$und1$mcI$sp__I = (function() {
+  return $uI(this.$$und1__O())
+});
 $c_T2.prototype.productArity__I = (function() {
   return 2
 });
@@ -10983,25 +11003,34 @@ $c_T2.prototype.equals__O__Z = (function(x$1) {
     return true
   } else if ($is_T2(x$1)) {
     var Tuple2$1 = $as_T2(x$1);
-    return ($m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und1$f, Tuple2$1.$$und1$f) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und2$f, Tuple2$1.$$und2$f))
+    return ($m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und1__O(), Tuple2$1.$$und1__O()) && $m_sr_BoxesRunTime$().equals__O__O__Z(this.$$und2__O(), Tuple2$1.$$und2__O()))
   } else {
     return false
   }
+});
+$c_T2.prototype.productElement__I__O = (function(n) {
+  return $f_s_Product2__productElement__I__O(this, n)
 });
 $c_T2.prototype.init___O__O = (function(_1, _2) {
   this.$$und1$f = _1;
   this.$$und2$f = _2;
   return this
 });
-$c_T2.prototype.productElement__I__O = (function(n) {
-  return $f_s_Product2__productElement__I__O(this, n)
-});
 $c_T2.prototype.toString__T = (function() {
-  return (((("(" + this.$$und1$f) + ",") + this.$$und2$f) + ")")
+  return (((("(" + this.$$und1__O()) + ",") + this.$$und2__O()) + ")")
+});
+$c_T2.prototype.$$und2__O = (function() {
+  return this.$$und2$f
+});
+$c_T2.prototype.$$und2$mcI$sp__I = (function() {
+  return $uI(this.$$und2__O())
 });
 $c_T2.prototype.hashCode__I = (function() {
   var this$2 = $m_s_util_hashing_MurmurHash3$();
   return this$2.productHash__s_Product__I__I(this, (-889275714))
+});
+$c_T2.prototype.$$und1__O = (function() {
+  return this.$$und1$f
 });
 $c_T2.prototype.productIterator__sc_Iterator = (function() {
   return new $c_sr_ScalaRunTime$$anon$1().init___s_Product(this)
@@ -12615,6 +12644,51 @@ function $m_sjs_js_WrappedArray$() {
   };
   return $n_sjs_js_WrappedArray$
 }
+/** @constructor */
+function $c_s_Tuple2$mcII$sp() {
+  $c_T2.call(this);
+  this.$$und1$mcI$sp$f = 0;
+  this.$$und2$mcI$sp$f = 0
+}
+$c_s_Tuple2$mcII$sp.prototype = new $h_T2();
+$c_s_Tuple2$mcII$sp.prototype.constructor = $c_s_Tuple2$mcII$sp;
+/** @constructor */
+function $h_s_Tuple2$mcII$sp() {
+  /*<skip>*/
+}
+$h_s_Tuple2$mcII$sp.prototype = $c_s_Tuple2$mcII$sp.prototype;
+$c_s_Tuple2$mcII$sp.prototype.$$und1$mcI$sp__I = (function() {
+  return this.$$und1$mcI$sp$f
+});
+$c_s_Tuple2$mcII$sp.prototype.init___I__I = (function(_1$mcI$sp, _2$mcI$sp) {
+  this.$$und1$mcI$sp$f = _1$mcI$sp;
+  this.$$und2$mcI$sp$f = _2$mcI$sp;
+  $c_T2.prototype.init___O__O.call(this, null, null);
+  return this
+});
+$c_s_Tuple2$mcII$sp.prototype.$$und2__O = (function() {
+  return this.$$und2$mcI$sp$f
+});
+$c_s_Tuple2$mcII$sp.prototype.$$und2$mcI$sp__I = (function() {
+  return this.$$und2$mcI$sp$f
+});
+$c_s_Tuple2$mcII$sp.prototype.$$und1__O = (function() {
+  return this.$$und1$mcI$sp$f
+});
+var $d_s_Tuple2$mcII$sp = new $TypeData().initClass({
+  s_Tuple2$mcII$sp: 0
+}, false, "scala.Tuple2$mcII$sp", {
+  s_Tuple2$mcII$sp: 1,
+  T2: 1,
+  O: 1,
+  s_Product2: 1,
+  s_Product: 1,
+  s_Equals: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  s_Product2$mcII$sp: 1
+});
+$c_s_Tuple2$mcII$sp.prototype.$classData = $d_s_Tuple2$mcII$sp;
 /** @constructor */
 function $c_s_math_Ordering$Int$() {
   $c_O.call(this)
